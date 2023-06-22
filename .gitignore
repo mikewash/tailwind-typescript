@@ -35,5 +35,5 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 
-.contentlayer/
+/.contentlayer/
 .idea/
