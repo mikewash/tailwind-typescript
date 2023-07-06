@@ -7,10 +7,10 @@ import ThemeSwitch from './ThemeSwitch'
 
 const Header = () => {
   return (
-    <header className="flex items-center justify-between py-10">
+    <header className="flex-column items-center justify-between py-5">
       <div>
         <Link href="/" aria-label={siteMetadata.headerTitle}>
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-center ">
             <div className="mr-3">
               <Logo />
             </div>
@@ -24,13 +24,13 @@ const Header = () => {
           </div>
         </Link>
       </div>
-      <div className="flex items-center text-base leading-5">
+      <div className="flex items-center text-base leading-5 justify-center py-4 ml-9">
         <div className="hidden sm:block">
           {headerNavLinks.map((link) => (
             <Link
               key={link.title}
               href={link.href}
-              className="p-1 font-medium text-gray-900 dark:text-gray-100 sm:p-4"
+              className="p-1 font-extrabold text-gray-900 dark:text-gray-100 sm:p-4"
             >
               {link.title}
             </Link>
