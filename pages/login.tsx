@@ -1,6 +1,10 @@
+import siteMetadata from '@/data/siteMetadata'
+import { PageSEO } from '@/components/SEO'
+
 export default function Login() {
     return (
-    <section className="h-screen">
+    <>
+    <section className="p-9">
     <div className="h-full">
        {/* Left column container with background */}
     <div
@@ -147,5 +151,6 @@ export default function Login() {
       </div>
     </div>
 </section>
+</>
   )
 }
