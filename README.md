@@ -203,6 +203,28 @@ Run `node ./scripts/compose.js` to bootstrap a new post.
 
 Follow the interactive prompt to generate a post with pre-filled front matter.
 
+## MySQL Database
+
+We are going to install MySQL, a database management system (DBMS) in our machines.
+
+### Windows 
+
+Go to [Windows Installer](https://dev.mysql.com/downloads/installer/) and download the online installation version `mysql-installer-web-community-<version>.msi`
+
+Double-click on the executable file and follow the steps. When it is time to choose a "Setup Type" select `Full.`
+
+Continue following the steps, choosing the default settings.
+
+### MacOS
+
+The MySQL community server is included in the MySQL Workbench, which is a graphical user interface, so we can get started downloading the MySQL workbench.
+
+Go to [MySQL Workbench](https://dev.mysql.com/downloads/workbench/), select the MacOS operating system, click the download button. Open the downloaded executable, and drag and drop the MySQL icon to the applcations folder. MySQL Workbench should be ready to use.
+
+## Updating Database Locally
+
+Access the MySQL folder within this repo, and download the `blogData.sql` file. Open it using MySQL Workbench, and run the script. Now the database should be up to date.
+
 ## Deploy
 
 **Vercel**  
