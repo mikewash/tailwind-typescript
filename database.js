@@ -6,12 +6,3 @@ const pool = mysql.createPool({
     password: "mypassword",
     connectionLimit: 10
 });
-
-pool.query(`SELECT * FROM classicmodels.customers WHERE customerNumber = 103`, (err, res)=>{
-  if(err){
-    console.error(err);
-  }
-  else {
-    console.log(res);  
-  }
-});
