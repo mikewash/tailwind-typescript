@@ -203,9 +203,11 @@ Run `node ./scripts/compose.js` to bootstrap a new post.
 
 Follow the interactive prompt to generate a post with pre-filled front matter.
 
-## MySQL Database
+## Database
 
-We are going to install MySQL, a database management system (DBMS) in our machines.
+### MySQL 
+
+First, We are going to install MySQL, a database management system (DBMS) in our machines.
 
 ### Windows 
 
@@ -221,9 +223,70 @@ The MySQL community server is included in the MySQL Workbench, which is a graphi
 
 Go to [MySQL Workbench](https://dev.mysql.com/downloads/workbench/), select the MacOS operating system, click the download button. Open the downloaded executable, and drag and drop the MySQL icon to the applcations folder. MySQL Workbench should be ready to use.
 
-## Updating Database Locally
+### Updating Database Locally
+
+First, create a new database by opening a query tab and running the following command:
+
+`> CREATE DATABASE blog_database;`
+
+Alternatively, you can use:
+
+`> CREATE SCHEMA blog_database;`
 
 Access the MySQL folder within this repo, and download the `blogData.sql` file. Open it using MySQL Workbench, and run the script. Now the database should be up to date.
+
+### Flyway
+
+Flyway is an open-source database version control tool that helps update a database from one version to another by using migrations. 
+
+First, go to [Flyway Community](https://www.red-gate.com/products/flyway/community/download/), choose your email and download Flyway. Note that the download includes Flyway Desktop and Flyway Command Line.
+
+Once you have downloaded Flyway, go to the instalation folder and copy the `Flyway` CLI folder `(e.g. C:\Program Files\Red Gate\Flyway Desktop\flyway)` and paste it in your `tailwind-typescript` repository.
+
+Then, from within the `tailwind-typescript` repository, change directory from the command prompt:
+
+`> cd flyway`
+
+The next step is to configure Flyway by editing the `conf/flyway.conf` configuration file as follows:
+
+`flyway.url=jdbc:mysql://<host>:<port>/<database>`
+
+Make sure to specify the host, port and database, which in our case is the `blog_database`.
+
+If when trying to run Flyway, you run into an error that states that public key retrieval is not allowed, set the `allowPublicKeyRetrieval` equal to true as follows:
+
+`flyway.url=jdbc:mysql://<host>:<port>/<database>?allowPublicKeyRetrieval=true`
+
+Furthermore, we need to specify where Flyway should look for the migrations by editing the `flyway.locations` property from the configuration file:
+
+`flyway.locations=filesystem:<path_to_sql_folder_within_flyway_folder>`
+
+Optionally, you can specify the `user` and `password` in the configuration file, so you don't have to input it everytime you want to use Flyway:
+
+```
+flyway.user= 
+flyway.password= 
+```
+
+### Migrations
+
+Now you should be ready to create migrations in the `sql` directory. The naming convention for our migrations is `Prefix`, `Version`, `Separator` (which consists of two underscores), `Description`, and `Suffix(sql)`. For example:
+
+`V1__Add_new_table.sql`
+
+As prefixes, we can use `V` for versioned migrations, `U` for undo migrations, and `R` for repeatable migrations.
+
+You are now ready to use the different Flyway commands. Note that since we are using a custom configuration file from within our project repository, we need to specify it by using the `-configFiles` option when using one of the flyway commands:
+
+`> flyway -configFiles=<path_to_custom_flyway.conf_file <command>`
+
+For example:
+
+`> flyway -configFiles=C:\Users\jose_\Desktop\tailwind-typescript\flyway\conf\flyway.conf migrate`
+
+It is highly recommended to set up some aliases to avoid the long-name typing.
+
+For a list of the different commands for Flyway, please visit [Flyway Commands](https://documentation.red-gate.com/fd/commands-184127446.html).
 
 ## Deploy
 
