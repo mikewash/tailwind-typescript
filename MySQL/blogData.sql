@@ -1,18 +1,18 @@
 USE blog_database;
 
-#Changed the users table, adding a 'role' column to determine if it is an author, manager, reader, etc. Default admin.
+--Changed the users table, adding a permission column to determine if it is an author, manager, reader, etc. Default admin.
 CREATE TABLE users (
 	id INT AUTO_INCREMENT,
     firstName VARCHAR(35) NOT NULL, -- 70 for full name based on the suggested number of characters found in web
     lastName VARCHAR(35) NOT NULL, 
-    unsername VARCHAR(50) NOT NULL UNIQUE,
+    username VARCHAR(50) NOT NULL UNIQUE,
     email VARCHAR(80) NOT NULL UNIQUE, -- It is case insensitive, but unique
     passwordHash VARCHAR(32) NOT NULL, -- 32 if we use md5 to generate the hashed password
     role VARCHAR(20) NOT NULL,
     PRIMARY KEY (id) -- to uniquely indentify each row
 );
 
-#changed TEXT (56,635 char) to MEDIUM TEXT (16,777,215 chars) 
+--changed TEXT (56,635 char) to MEDIUM TEXT (16,777,215 chars) 
 CREATE TABLE blogs (
 	id INT AUTO_INCREMENT,
     title VARCHAR(100) NOT NULL,
@@ -29,8 +29,6 @@ CREATE TABLE tags (
     PRIMARY KEY (id)
 ); 
 
-CREATE INDEX idx_blog_tag ON blogTagsBrindge(blogid,tagid);
-
 CREATE TABLE blogTagsBridge (
 	tagid INT NOT NULL,
     blogid INT NOT NULL,
@@ -38,6 +36,9 @@ CREATE TABLE blogTagsBridge (
     FOREIGN KEY (blogid) REFERENCES blogs (id),
     PRIMARY KEY (blogid, tagid)
 );
+
+--Learn about and implement indexing for the bridge 
+CREATE INDEX idx_blog_tag ON blogTagsBridge(blogid,tagid);
 
 CREATE TABLE comments (
 	id INT AUTO_INCREMENT,
@@ -50,3 +51,4 @@ CREATE TABLE comments (
     PRIMARY KEY (id)
     
 );
+

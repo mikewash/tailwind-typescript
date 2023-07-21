@@ -235,58 +235,50 @@ Alternatively, you can use:
 
 Access the MySQL folder within this repo, and download the `blogData.sql` file. Open it using MySQL Workbench, and run the script. Now the database should be up to date.
 
-### Flyway
+### db-migrate
 
-Flyway is an open-source database version control tool that helps update a database from one version to another by using migrations. 
+db-migrate is a node.js database migration tool used to keep track of the changes in our schemas.
 
-First, go to [Flyway Community](https://www.red-gate.com/products/flyway/community/download/), choose your email and download Flyway. Note that the download includes Flyway Desktop and Flyway Command Line.
+First, we need to install db-migrate globally an locally by calling the following commands:
+```
+> npm install -g db-migrate
+> npm install db-migrate
+```
+Then, we need to install the specific mysql driver by calling:
 
-Once you have downloaded Flyway, go to the instalation folder and copy the `Flyway` CLI folder `(e.g. C:\Program Files\Red Gate\Flyway Desktop\flyway)` and paste it in your `tailwind-typescript` repository.
+`> npm install db-migrate-mysql`
 
-Then, from within the `tailwind-typescript` repository, change directory from the command prompt:
-
-`> cd flyway`
-
-The next step is to configure Flyway by editing the `conf/flyway.conf` configuration file as follows:
-
-`flyway.url=jdbc:mysql://<host>:<port>/<database>`
-
-Make sure to specify the host, port and database, which in our case is the `blog_database`.
-
-If when trying to run Flyway, you run into an error that states that public key retrieval is not allowed, set the `allowPublicKeyRetrieval` equal to true as follows:
-
-`flyway.url=jdbc:mysql://<host>:<port>/<database>?allowPublicKeyRetrieval=true`
-
-Furthermore, we need to specify where Flyway should look for the migrations by editing the `flyway.locations` property from the configuration file:
-
-`flyway.locations=filesystem:<path_to_sql_folder_within_flyway_folder>`
-
-Optionally, you can specify the `user` and `password` in the configuration file, so you don't have to input it everytime you want to use Flyway:
+Create a `database` directory in your project repository, containing a `config` folder and a `migrations` folder. Then, within the config folder, add a `dev.json` file. Copy the following code into it:
 
 ```
-flyway.user= 
-flyway.password= 
+{
+"dev":{
+   "host": "name_of_host",
+   "user": "name_of_user",
+   "password": "your_password",
+   "database": "name_of_database",
+   "driver": "mysql",
+   "multipleStatements": true,
+   }
+}
 ```
+In this code, you are going to specify the details to connect to your database.
 
-### Migrations
+To create your first migration use the command from within the `database` directory that you just created:
 
-Now you should be ready to create migrations in the `sql` directory. The naming convention for our migrations is `Prefix`, `Version`, `Separator` (which consists of two underscores), `Description`, and `Suffix(sql)`. For example:
+`Db-migrate create <name_of_migration> --config ./config/dev.json --sql-file`
 
-`V1__Add_new_table.sql`
+Where `./config/dev.json` is the path to our `dev.json` file from our current directory, in this case, `database`, and `--sql-file` flag makes db-migrate create SQL template files instead of JavaScript.
 
-As prefixes, we can use `V` for versioned migrations, `U` for undo migrations, and `R` for repeatable migrations.
+Now, in your `migrations` folder, you can see a `sql` folder with the two templates with the following convention:
 
-You are now ready to use the different Flyway commands. Note that since we are using a custom configuration file from within our project repository, we need to specify it by using the `-configFiles` option when using one of the flyway commands:
+```
+<string_of_numbers>-<name_of_migration>-up.sql
+<string_of_numbers>-<name_of_migration>-down.sql
+```
+In this templates, you can write SQL statements for the `up` function and the `down` function. Basically, the `up` function applies your changes to the database while the `down` function reverts these same changes.
 
-`> flyway -configFiles=<path_to_custom_flyway.conf_file <command>`
-
-For example:
-
-`> flyway -configFiles=C:\Users\jose_\Desktop\tailwind-typescript\flyway\conf\flyway.conf migrate`
-
-It is highly recommended to set up some aliases to avoid the long-name typing.
-
-For a list of the different commands for Flyway, please visit [Flyway Commands](https://documentation.red-gate.com/fd/commands-184127446.html).
+For a list of the basic db-migrate commands, please visit [db-migrate commands](https://db-migrate.readthedocs.io/en/latest/Getting%20Started/commands/).
 
 ## Deploy
 
