@@ -258,7 +258,7 @@ Create a `database` directory in your project repository, containing a `config` 
    "password": "your_password",
    "database": "name_of_database",
    "driver": "mysql",
-   "multipleStatements": true,
+   "multipleStatements": true
    }
 }
 ```
