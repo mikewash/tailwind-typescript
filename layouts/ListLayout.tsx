@@ -132,20 +132,19 @@ export default function ListLayout({
         </div>
 
         <ul className='divide-y divide-gray-200 dark:divide-gray-700'>
-          
+
           {!filteredBlogPosts.length && 'No posts found.'}
           {displayPosts.map((post) => {
             const { path, date, title, summary, tags } = post
             return (
               <li key={path} className="py-4 ">
-                
-                <article className="">
+
+                <article className="relative clear-right">
+                  <img className='static float-right' src="https://t3.ftcdn.net/jpg/02/48/42/64/240_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg" />
+
                   {/* GOES IN CLASSNAME FOR ARTICLE -> space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0  */}
                   <dl>
                     <dt className="sr-only">Published on</dt>
-                    <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                      <time dateTime={date}>{formatDate(date, siteMetadata.locale)}</time>
-                    </dd>
                   </dl>
                   <div className="space-y-3 xl:col-span-3">
                     <div>
@@ -160,11 +159,18 @@ export default function ListLayout({
                         ))}
                       </div>
                     </div>
+
                     <div className="prose max-w-none text-gray-500 dark:text-gray-400">
                       {summary}
                     </div>
 
+
                     <div className='flex flex-row justify-betweeen space-x-2'>
+
+                      <div className="self-center text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+                        <time className='' dateTime={date}>{formatDate(date, siteMetadata.locale)}</time>
+                      </div>
+
                       <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 hover:border-transparent rounded">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -179,23 +185,17 @@ export default function ListLayout({
                             d="M2.25 12.76c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.076-4.076a1.526 1.526 0 011.037-.443 48.282 48.282 0 005.68-.494c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" />
                         </svg>
                       </button>
-
                       <button type="button" className="text-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center mr-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500">
                         <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
                           <path d="M3 7H1a1 1 0 0 0-1 1v8a2 2 0 0 0 4 0V8a1 1 0 0 0-1-1Zm12.954 0H12l1.558-4.5a1.778 1.778 0 0 0-3.331-1.06A24.859 24.859 0 0 1 6 6.8v9.586h.114C8.223 16.969 11.015 18 13.6 18c1.4 0 1.592-.526 1.88-1.317l2.354-7A2 2 0 0 0 15.954 7Z" />
                         </svg>
                         <span className="sr-only">Button</span>
-
                       </button>
+                    </div>
 
-                    </div>
-                    <div className='flex md:flex md:flex-grow flex-row justify-end space-x-1'>
-                      <img src="https://t3.ftcdn.net/jpg/02/48/42/64/240_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg" className="" />
-                    </div>
+
                   </div>
-
                 </article>
-
               </li>
             )
           })}
