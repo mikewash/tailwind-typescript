@@ -139,8 +139,8 @@ export default function ListLayout({
             return (
               <li key={path} className="py-4 ">
 
-                <article className="relative clear-right">
-                  <img className='static float-right' src="https://t3.ftcdn.net/jpg/02/48/42/64/240_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg" />
+                <article className="pb-12 relative clear-right">
+                  <img className='px-8 float-right' src="https://t3.ftcdn.net/jpg/02/48/42/64/240_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg" />
 
                   {/* GOES IN CLASSNAME FOR ARTICLE -> space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0  */}
                   <dl>
@@ -168,7 +168,7 @@ export default function ListLayout({
                     <div className='flex flex-row justify-betweeen space-x-2'>
 
                       <div className="self-center text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                        <time className='' dateTime={date}>{formatDate(date, siteMetadata.locale)}</time>
+                        <time dateTime={date}>{formatDate(date, siteMetadata.locale)}</time>
                       </div>
 
                       <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 hover:border-transparent rounded">
