@@ -140,7 +140,7 @@ export default function ListLayout({
               <li key={path} className="py-4 ">
 
                 <article className="pb-12 relative clear-right">
-                  <img className='px-8 float-right' src="https://t3.ftcdn.net/jpg/02/48/42/64/240_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg" />
+                  <img className='px-8 float-right h-auto max-w-md' src="https://t3.ftcdn.net/jpg/02/48/42/64/240_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg" />
 
                   {/* GOES IN CLASSNAME FOR ARTICLE -> space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0  */}
                   <dl>
@@ -192,7 +192,6 @@ export default function ListLayout({
                         <span className="sr-only">Button</span>
                       </button>
                     </div>
-
 
                   </div>
                 </article>
