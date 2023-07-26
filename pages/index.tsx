@@ -8,6 +8,7 @@ import { InferGetStaticPropsType } from 'next'
 import { NewsletterForm } from 'pliny/ui/NewsletterForm'
 import { allBlogs } from 'contentlayer/generated'
 import type { Blog } from 'contentlayer/generated'
+import LeftSection from './dynamicPage/LeftSection'
 
 const MAX_DISPLAY = 6
 
