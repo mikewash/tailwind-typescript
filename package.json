@@ -18,6 +18,8 @@
     "@tailwindcss/typography": "^0.5.9",
     "autoprefixer": "^10.4.13",
     "contentlayer": "0.3.0",
+    "db-migrate": "^0.11.13",
+    "db-migrate-mysql": "^2.2.0",
     "esbuild": "0.17.5",
     "github-slugger": "^1.4.0",
     "gray-matter": "^4.0.2",
