@@ -1,14 +1,7 @@
-import siteMetadata from '@/data/siteMetadata'
-import { PageSEO } from '@/components/SEO'
 import {getData} from "./api/serverClient";
 import {useEffect, useState} from "react";
 
 export default function Login() {
-
-  // const staticData = await fetch(`https://...`, { cache: 'force-cache' })
-  // const [data, setData] = useState<any>(null);
-
-  // const data2 = await getData();
   useEffect(() => {
     getData().then(data => {
       console.log('client data', data)
@@ -93,15 +86,6 @@ export default function Login() {
                   <div
                       className="my-4 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-neutral-300 after:mt-0.5 after:flex-1 after:border-t after:border-neutral-300">
                   </div>
-
-                  {/* <!-- Email input --> */}
-                  {/*{data &&*/}
-                  {/*    (<>*/}
-                  {/*      <div><p>HEY</p>*/}
-                  {/*        {data.message}*/}
-                  {/*      </div>*/}
-                  {/*    </>)*/}
-                  {/*}*/}
 
                   <div className="relative mb-6" data-te-input-wrapper-init>
                     <input
