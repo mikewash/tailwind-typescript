@@ -1,11 +1,19 @@
 import express from 'express';
+import cors from 'cors';
 
 // Create an instance of Express
 const app = express();
+app.use(cors())
 
 // Define a route handler
 app.get('/', (req, res) => {
-    res.send('Hello, World!');
+    console.log('Hello World!')
+    res.json({ message: 'Hello World!' });
+});
+
+app.get('/api', (req, res) => {
+    console.log('Hello World!')
+    res.json({ message: 'Hello World!' });
 });
 
 // Start the server
