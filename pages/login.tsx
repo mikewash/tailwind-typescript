@@ -1,12 +1,26 @@
-import {getData} from "./api/serverClient";
+import {getNames} from "./api/serverClient";
 import {useEffect, useState} from "react";
 
 export default function Login() {
+
+  const [data, setData] = useState<>([])
+
   useEffect(() => {
-    getData().then(data => {
-      console.log('client data', data)
+    getNames().then(data => {
+	console.log(data);
+      // let html: React.ReactElement;
+      // for (const d of data.data) {
+      //   console.log(d);
+      //   html = <><div>{d.id}</div><div>{d.name}</div></>
+      // }
+      //
+      // console.log(html)
+      setData(data.data);
+
     })
   }, [])
+
+
 
   return (
       <>
@@ -151,6 +165,17 @@ export default function Login() {
                         className="text-danger transition duration-150 ease-in-out hover:text-danger-600 focus:text-danger-600 active:text-danger-700"
                     > Register</a>
                   </p>
+                </div>
+
+                <div>
+                  {data.map((item, i) => {
+                    return (
+                        <div>
+                          <span>{item.id}</span><span> </span><span> {item.name}</span>
+                        </div>
+                    );
+                  })}
+
                 </div>
               </div>
             </div>
