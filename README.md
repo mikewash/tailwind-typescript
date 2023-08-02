@@ -1,6 +1,6 @@
 ![tailwind-nextjs-banner](/public/static/images/twitter-card.png)
 
-# Tailwind Nextjs Starter Blog
+# Tailwind Nextjs Starter Blogs
 
 [![GitHub Repo stars](https://img.shields.io/github/stars/timlrx/tailwind-nextjs-starter-blog?style=social)](https://GitHub.com/timlrx/tailwind-nextjs-starter-blog/stargazers/)
 [![GitHub forks](https://img.shields.io/github/forks/timlrx/tailwind-nextjs-starter-blog?style=social)](https://GitHub.com/timlrx/tailwind-nextjs-starter-blog/network/)
@@ -202,6 +202,83 @@ canonicalUrl: https://tailwind-nextjs-starter-blog.vercel.app/blog/introducing-t
 Run `node ./scripts/compose.js` to bootstrap a new post.
 
 Follow the interactive prompt to generate a post with pre-filled front matter.
+
+## Database
+
+### MySQL 
+
+First, We are going to install MySQL, a database management system (DBMS) in our machines.
+
+### Windows 
+
+Go to [Windows Installer](https://dev.mysql.com/downloads/installer/) and download the online installation version `mysql-installer-web-community-<version>.msi`
+
+Double-click on the executable file and follow the steps. When it is time to choose a "Setup Type" select `Full.`
+
+Continue following the steps, choosing the default settings.
+
+### MacOS
+
+The MySQL community server is included in the MySQL Workbench, which is a graphical user interface, so we can get started downloading the MySQL workbench.
+
+Go to [MySQL Workbench](https://dev.mysql.com/downloads/workbench/), select the MacOS operating system, click the download button. Open the downloaded executable, and drag and drop the MySQL icon to the applcations folder. MySQL Workbench should be ready to use.
+
+### Updating Database Locally
+
+First, create a new database by opening a query tab and running the following command:
+
+`> CREATE DATABASE blog_database;`
+
+Alternatively, you can use:
+
+`> CREATE SCHEMA blog_database;`
+
+Access the MySQL folder within this repo, and download the `blogData.sql` file. Open it using MySQL Workbench, and run the script. Now the database should be up to date.
+
+### db-migrate
+
+db-migrate is a node.js database migration tool used to keep track of the changes in our schemas.
+
+First, we need to install db-migrate globally an locally by calling the following commands:
+```
+> npm install -g db-migrate
+> npm install db-migrate
+```
+Then, we need to install the specific mysql driver by calling:
+
+`> npm install db-migrate-mysql`
+
+Create a `database` directory in your project repository, containing a `config` folder and a `migrations` folder. Then, within the config folder, add a `dev.json` file. Copy the following code into it:
+
+```
+{
+"dev":{
+   "host": "name_of_host",
+   "user": "name_of_user",
+   "password": "your_password",
+   "database": "name_of_database",
+   "driver": "mysql",
+   "multipleStatements": true
+   }
+}
+```
+In this code, you are going to specify the details to connect to your database.
+
+To create your first migration use the command from within the `database` directory that you just created:
+
+`Db-migrate create <name_of_migration> --config ./config/dev.json --sql-file`
+
+Where `./config/dev.json` is the path to our `dev.json` file from our current directory, in this case, `database`, and `--sql-file` flag makes db-migrate create SQL template files instead of JavaScript.
+
+Now, in your `migrations` folder, you can see a `sql` folder with the two templates with the following convention:
+
+```
+<string_of_numbers>-<name_of_migration>-up.sql
+<string_of_numbers>-<name_of_migration>-down.sql
+```
+In this templates, you can write SQL statements for the `up` function and the `down` function. Basically, the `up` function applies your changes to the database while the `down` function reverts these same changes.
+
+For a list of the basic db-migrate commands, please visit [db-migrate commands](https://db-migrate.readthedocs.io/en/latest/Getting%20Started/commands/).
 
 ## Deploy
 
