@@ -21,6 +21,11 @@ app.get('/api', (req, res) => {
     res.json({ message: 'Hello World!' });
 });
 
+app.post('/sign-in', (req, res) => {
+    console.log('Body: ', req.body)
+    res.json({ message: 'We got it' });
+});
+
 // Start the server
 const port = 8080;
 app.listen(port, () => {
