@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import {database} from './database';
 import bodyParser from "body-parser";
 
 // Create an instance of Express
@@ -21,7 +22,15 @@ app.get('/', (req, res) => {
 
 app.get('/api', (req, res) => {
     console.log('Hello World!')
-    res.json({ message: 'Hello World!' });
+    database.query('SELECT * FROM users', (err, rows) => {
+        if (err) {
+            console.log('Error: ', err)
+            res.status(500).json({ message: 'Internal Server Error' });
+            return;
+        }
+        res.json({ data: rows });
+    })
+    // res.json({ message: 'Hello World!' });
 });
 
 app.post('/sign-in', (req, res) => {
