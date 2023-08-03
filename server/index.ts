@@ -22,6 +22,11 @@ app.get('/', (req, res) => {
 
 app.get('/api', (req, res) => {
     console.log('Hello World!')
+    res.json({ message: 'Hello World!' });
+});
+
+app.post('/sign-in', (req, res) => {
+    console.log('Body: ', req.body)
     database.query('SELECT * FROM users', (err, rows) => {
         if (err) {
             console.log('Error: ', err)
@@ -30,12 +35,6 @@ app.get('/api', (req, res) => {
         }
         res.json({ data: rows });
     })
-    // res.json({ message: 'Hello World!' });
-});
-
-app.post('/sign-in', (req, res) => {
-    console.log('Body: ', req.body)
-    res.json({ message: 'We got it' });
 });
 
 // Start the server
