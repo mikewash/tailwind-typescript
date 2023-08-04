@@ -8,17 +8,40 @@ import { InferGetStaticPropsType } from 'next'
 import { NewsletterForm } from 'pliny/ui/NewsletterForm'
 import { allBlogs } from 'contentlayer/generated'
 import type { Blog } from 'contentlayer/generated'
+import { getBlogWithTags } from 'server/models'
+import {getBlogs, getNames, postLogin} from "./api/serverClient";
+import {useEffect, useState} from "react";
 
 const MAX_DISPLAY = 6
 
-export const getStaticProps = async () => {
-  const sortedPosts = sortedBlogPost(allBlogs) as Blog[]
-  const posts = allCoreContent(sortedPosts)
+// export const getStaticProps = async () => {
+//   const sortedPosts = sortedBlogPost(allBlogs) as Blog[]
+//   const posts = allCoreContent(sortedPosts)
 
-  return { props: { posts } }
-}
+//   return { props: { posts } }
+// }
 
-export default function Home({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
+// export async function getServerSideProps() {
+//   const posts = await getBlogWithTags(); 
+//   return { props: {posts}};
+// }
+
+// export default function Home({ posts }: InferGetStaticPropsType<typeof getServerSideProps>)
+
+
+export default function Home() {
+
+
+
+  const [data, setData] = useState<>([])
+  
+  useEffect(() => {
+    getBlogs().then(data => {
+      console.log(data);
+      setData(data.data);
+    })
+  }, [])
+
   return (
     <>
       <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
@@ -32,29 +55,23 @@ export default function Home({ posts }: InferGetStaticPropsType<typeof getStatic
           </p>
         </div>
         <ul className="grid grid-cols-3 gap-4">
-          {!posts.length && 'No posts found.'}
-          {posts.slice(0, MAX_DISPLAY).map((post) => {
-            const { slug, date, title, summary, tags } = post
+          {!data.length && 'No posts found.'}
+          {data.slice(0, MAX_DISPLAY).map((post) => {
+            const { created, title, overview, tags } = post
             return (
-              <li key={slug} className="py-12">
                 <article>
                   <div>
                     <dl>
                       <dt className="sr-only">Published on</dt>
                       <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                        <time dateTime={date}>{formatDate(date, siteMetadata.locale)}</time>
+                        <time dateTime={created}>{formatDate(created, siteMetadata.locale)}</time>
                       </dd>
                     </dl>
                     <div className="space-y-5 xl:col-span-3">
                       <div className="space-y-6">
                         <div>
                           <h2 className="text-2xl font-bold leading-8 tracking-tight">
-                            <Link
-                              href={`/blog/${slug}`}
-                              className="text-gray-900 dark:text-gray-100"
-                            >
-                              {title}
-                            </Link>
+                          <span className="text-gray-900 dark:text-gray-100">{title}</span>
                           </h2>
                           <div className="flex flex-wrap">
                             {tags.map((tag) => (
@@ -63,27 +80,22 @@ export default function Home({ posts }: InferGetStaticPropsType<typeof getStatic
                           </div>
                         </div>
                         <div className="prose max-w-none text-gray-500 dark:text-gray-400">
-                          {summary}
+                          {overview}
                         </div>
                       </div>
                       <div className="text-base font-medium leading-6">
-                        <Link
-                          href={`/blog/${slug}`}
-                          className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-                          aria-label={`Read "${title}"`}
-                        >
-                          Read more &rarr;
-                        </Link>
+                      <span className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
+                       Read more &rarr;
+                      </span>
                       </div>
                     </div>
                   </div>
                 </article>
-              </li>
             )
           })}
         </ul>
       </div>
-      {posts.length > MAX_DISPLAY && (
+      {data.length > MAX_DISPLAY && (
         <div className="flex justify-end text-base font-medium leading-6">
           <Link
             href="/blog"

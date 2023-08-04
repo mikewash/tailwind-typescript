@@ -1,6 +1,9 @@
+import { getBlog, getTags, getBlogWithTags } from "c:/Users/jose_/Desktop/tailwind-typescript/server/models";
 import express from 'express';
 import cors from 'cors';
 import bodyParser from "body-parser";
+
+
 
 // Create an instance of Express
 const app = express();
@@ -10,12 +13,8 @@ app.use(express.urlencoded({ extended: true })); // For parsing URL-encoded data
 
 // Define a route handler
 app.get('/', (req, res) => {
-    const databaseObjects = [
-        {id: 1, name: 'Jose'},
-        {id: 2, name: 'Breanna' },
-        {id: 3, name: 'Juan' },
-        {id: 4, name: 'Mike' },
-    ]
+    const databaseObjects = getBlogWithTags(); 
+    console.log(databaseObjects)
     res.json({ data: databaseObjects });
 });
 
