@@ -3,7 +3,7 @@ import {useEffect, useState} from "react";
 
 export default function Login() {
 
-  const [data, setData] = useState<>([])
+  const [data, setData] = useState<>([]);
 
   // Grab the email address on changed state
   const [email, setEmail] = useState<>('');

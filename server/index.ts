@@ -1,4 +1,4 @@
-import { getBlog, getTags, getBlogWithTags } from "c:/Users/jose_/Desktop/tailwind-typescript/server/models";
+import { getBlog, getSingleTag, getAllTags } from "c:/Users/jose_/Desktop/tailwind-typescript/server/models";
 import express from 'express';
 import cors from 'cors';
 import bodyParser from "body-parser";
@@ -12,10 +12,10 @@ app.use(express.json()); // For parsing JSON data
 app.use(express.urlencoded({ extended: true })); // For parsing URL-encoded data
 
 // Define a route handler
-app.get('/', (req, res) => {
-    const databaseObjects = getBlogWithTags(); 
-    console.log(databaseObjects)
-    res.json({ data: databaseObjects });
+app.get('/', async (req, res) => {
+    const databaseObjects = await getBlog(); 
+    const databaseObjects2 = await getAllTags();
+    res.json({ data: databaseObjects, data2: databaseObjects2 });
 });
 
 app.get('/api', (req, res) => {

@@ -8,11 +8,12 @@ import { InferGetStaticPropsType } from 'next'
 import { NewsletterForm } from 'pliny/ui/NewsletterForm'
 import { allBlogs } from 'contentlayer/generated'
 import type { Blog } from 'contentlayer/generated'
-import { getBlogWithTags } from 'server/models'
 import {getBlogs, getNames, postLogin} from "./api/serverClient";
 import {useEffect, useState} from "react";
 
 const MAX_DISPLAY = 6
+
+//import { getBlogWithTags } from 'server/models'
 
 // export const getStaticProps = async () => {
 //   const sortedPosts = sortedBlogPost(allBlogs) as Blog[]
@@ -33,12 +34,13 @@ export default function Home() {
 
 
 
-  const [data, setData] = useState<>([])
+  const [data, setData] = useState<>([]);
+  const [data2, setData2] = useState<>([]);
   
   useEffect(() => {
     getBlogs().then(data => {
-      console.log(data);
       setData(data.data);
+      setData2(data.data2);
     })
   }, [])
 
@@ -56,11 +58,12 @@ export default function Home() {
         </div>
         <ul className="grid grid-cols-3 gap-4">
           {!data.length && 'No posts found.'}
-          {data.slice(0, MAX_DISPLAY).map((post) => {
-            const { created, title, overview, tags } = post
+          {data.slice(0, MAX_DISPLAY).map((post, index) => {
+            const { created, title, overview,} = post;
+            const tagsArray = data2[index]|| [];
             return (
                 <article>
-                  <div>
+                  <div key={index}>
                     <dl>
                       <dt className="sr-only">Published on</dt>
                       <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
@@ -74,8 +77,8 @@ export default function Home() {
                           <span className="text-gray-900 dark:text-gray-100">{title}</span>
                           </h2>
                           <div className="flex flex-wrap">
-                            {tags.map((tag) => (
-                              <Tag key={tag} text={tag} />
+                            {tagsArray.map((tag, tagIndex) => (
+                              <Tag key={tagIndex} text={tag.name} />
                             ))}
                           </div>
                         </div>
