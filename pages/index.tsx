@@ -59,7 +59,7 @@ export default function Home() {
         <ul className="grid grid-cols-3 gap-4">
           {!data.length && 'No posts found.'}
           {data.slice(0, MAX_DISPLAY).map((post, index) => {
-            const { created, title, overview,} = post;
+            const { created, title, summary} = post;
             const tagsArray = data2[index]|| [];
             return (
                 <article>
@@ -77,13 +77,17 @@ export default function Home() {
                           <span className="text-gray-900 dark:text-gray-100">{title}</span>
                           </h2>
                           <div className="flex flex-wrap">
-                            {tagsArray.map((tag, tagIndex) => (
-                              <Tag key={tagIndex} text={tag.name} />
-                            ))}
+                         {tagsArray.length > 0 ? (
+                          tagsArray.map((tag, tagIndex) => (
+                          <Tag key={tagIndex} text={tag.name} />
+                          ))
+                          ): (
+                          <div className="px-4 py-2.5"></div>
+                          )}
                           </div>
                         </div>
                         <div className="prose max-w-none text-gray-500 dark:text-gray-400">
-                          {overview}
+                          {summary}
                         </div>
                       </div>
                       <div className="text-base font-medium leading-6">
