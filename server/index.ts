@@ -1,7 +1,9 @@
 import { getBlog, getSingleTag, getAllTags } from "c:/Users/jose_/Desktop/tailwind-typescript/server/models";
 import express from 'express';
 import cors from 'cors';
+import {getConnection} from './database';
 import bodyParser from "body-parser";
+import {getUsers} from "./model";
 
 
 
@@ -10,6 +12,7 @@ const app = express();
 app.use(cors())
 app.use(express.json()); // For parsing JSON data
 app.use(express.urlencoded({ extended: true })); // For parsing URL-encoded data
+
 
 // Define a route handler
 app.get('/', async (req, res) => {
@@ -23,9 +26,11 @@ app.get('/api', (req, res) => {
     res.json({ message: 'Hello World!' });
 });
 
-app.post('/sign-in', (req, res) => {
+app.post('/sign-in', async (req, res) => {
     console.log('Body: ', req.body)
-    res.json({ message: 'We got it' });
+    // This is just an example change this to your own logic so you can sign into the app
+    const rows = await getUsers()
+    res.json({data: rows});
 });
 
 // Start the server
