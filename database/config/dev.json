@@ -1,0 +1,10 @@
+{
+    "dev":{
+       "host": "localhost",
+       "user": "root",
+       "password": "01123581321!x",
+       "database": "blog_database",
+       "driver": "mysql",
+       "multipleStatements": true
+       }
+    }
