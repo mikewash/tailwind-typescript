@@ -12,6 +12,7 @@
     "lint": "next lint --fix --dir pages --dir components --dir lib --dir layouts --dir scripts"
   },
   "dependencies": {
+    "@floating-ui/react": "^0.25.0",
     "@headlessui/react": "^1.7.15",
     "@next/bundle-analyzer": "13.1.6",
     "@next/font": "13.1.6",
