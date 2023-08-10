@@ -1,9 +1,12 @@
-import {getNames} from "./api/serverClient";
+import {getNames, postLogin} from "./api/serverClient";
 import {useEffect, useState} from "react";
 
 export default function Login() {
 
-  const [data, setData] = useState<>([])
+  const [data, setData] = useState([])
+  // Grab the email address on changed state
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
 
   useEffect(() => {
     getNames().then(data => {
@@ -19,6 +22,21 @@ export default function Login() {
 
     })
   }, [])
+
+  useEffect(() => {
+
+    console.log('email', email)
+    console.log('password', password)
+
+  }, [email, password])
+
+  // For handleClick when run send the email address and password to the post request in serverClient.ts
+    const handleClick = () => {
+      postLogin('sign-in', {email, password}).then(data => {
+        console.log(data);
+      })
+    }
+
 
 
 
@@ -106,7 +124,9 @@ export default function Login() {
                         type="text"
                         className="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                         id="exampleFormControlInput2"
-                        placeholder="Email address"/>
+                        placeholder="Email address"
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
                     <label
                         //for="exampleFormControlInput2"
                         className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.85rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem]
@@ -121,7 +141,9 @@ export default function Login() {
                         type="password"
                         className="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                         id="exampleFormControlInput22"
-                        placeholder="Password"/>
+                        placeholder="Password"
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
                     <label
                         //for="exampleFormControlInput22"
                         className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.85rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
@@ -154,7 +176,9 @@ export default function Login() {
                       type="button"
                       className="inline-block rounded bg-blue-500 px-7 pb-2.5 pt-3 text-sm font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-blue-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
                       data-te-ripple-init
-                      data-te-ripple-color="light">
+                      data-te-ripple-color="light"
+                      onClick={handleClick}
+                  >
                     Login
                   </button>
                   {/* <!-- Register link --> */}

@@ -20,6 +20,7 @@ honestly my explanation doesn't make much sense to me either*/
 //okay i keep having to change margins and stuff because things just aren't in line, 
 //nevermind i fixed it :3
 
+
 export default function AdminLayout({ children }) {
     return (
         <div className='flex flex-row bg-neutral-100 h-screen w-screen overflow-hidden absolute left-0 inset-y-0'>
