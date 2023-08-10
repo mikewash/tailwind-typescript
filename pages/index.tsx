@@ -31,14 +31,12 @@ const MAX_DISPLAY = 6
 
 
 export default function Home() {
-
-
-
-  const [data, setData] = useState<>([]);
-  const [data2, setData2] = useState<>([]);
+  const [data, setData] = useState([]);
+  const [data2, setData2] = useState([]);
   
   useEffect(() => {
     getBlogs().then(data => {
+      console.log('data', data)
       setData(data.data);
       setData2(data.data2);
     })

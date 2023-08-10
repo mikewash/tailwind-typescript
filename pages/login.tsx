@@ -2,13 +2,8 @@ import {getBlogs, getNames, postLogin} from "./api/serverClient";
 import {useEffect, useState} from "react";
 
 export default function Login() {
-
-<<<<<<< HEAD
-  const [data, setData] = useState<>([]);
-
-=======
   const [data, setData] = useState([])
->>>>>>> 698b1e0e76340ebdbf46431ebd565cb53b5debac
+
   // Grab the email address on changed state
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');

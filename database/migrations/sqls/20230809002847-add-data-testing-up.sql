@@ -1,7 +1,7 @@
 INSERT INTO users (
 	firstName,
     lastName,
-    unsername,
+    username,
     email,
     passwordHash,
     role
