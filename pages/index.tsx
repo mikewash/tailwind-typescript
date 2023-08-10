@@ -23,15 +23,14 @@ export default function Home({ posts }: InferGetStaticPropsType<typeof getStatic
     <>
       <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
-        <div className="space-y-2 pt-6 pb-8 md:space-y-5">
+        {/* <div className="space-y-2 pt-6 pb-8 md:space-y-5">
           <h1 className="flex justify-center text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
-            {/* Latest */}
-            <img className='w-30 h-10 max-w-auto' src='https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Digg-new.svg/1200px-Digg-new.svg.png'></img>
+            Latest
           </h1>
-          {/* <p className="flex justify-center text-lg leading-7 text-gray-500 dark:text-gray-400">
+          <p className="flex justify-center text-lg leading-7 text-gray-500 dark:text-gray-400">
             {siteMetadata.description}
-          </p> */}
-        </div>
+          </p>
+        </div> */}
         <ul className="grid grid-cols-3 gap-4">
           {!posts.length && 'No posts found.'}
           {posts.slice(0, MAX_DISPLAY).map((post) => {

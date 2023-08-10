@@ -24,6 +24,9 @@ const Header = () => {
           </div>
         </Link>
       </div>
+      <div className='flex justify-center pt-6' >
+      <img className='w-30 h-10 max-w-auto' src='https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Digg-new.svg/1200px-Digg-new.svg.png'></img>
+      </div>
       <div className="flex items-center text-base leading-5 justify-center py-4 ml-9">
         <div className="hidden sm:block">
           {headerNavLinks.map((link) => (
