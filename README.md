@@ -276,7 +276,12 @@ Now, in your `migrations` folder, you can see a `sql` folder with the two templa
 <string_of_numbers>-<name_of_migration>-up.sql
 <string_of_numbers>-<name_of_migration>-down.sql
 ```
-In this templates, you can write SQL statements for the `up` function and the `down` function. Basically, the `up` function applies your changes to the database while the `down` function reverts these same changes.
+In this templates, you can write SQL statements for the `up` function and the `down` function. Basically, the `up` function applies your changes to the database while the `down` function reverts these same changes. You can call the `up` and `down` functions from the `database` repository as follows:
+
+```
+db-migrate up --config ./config/dev.json
+db-migrate down --config ./config/dev.json
+```
 
 For a list of the basic db-migrate commands, please visit [db-migrate commands](https://db-migrate.readthedocs.io/en/latest/Getting%20Started/commands/).
 

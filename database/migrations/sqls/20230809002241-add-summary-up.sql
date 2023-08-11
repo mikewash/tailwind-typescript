@@ -1,0 +1,2 @@
+ALTER TABLE blogs
+ADD summary TINYTEXT NOT NULL;
