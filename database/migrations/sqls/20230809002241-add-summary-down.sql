@@ -1,0 +1,2 @@
+ALTER TABLE blogs
+DROP COLUMN summary;

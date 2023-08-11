@@ -1,27 +1,20 @@
-import {getNames, postLogin} from "./api/serverClient";
+import {getBlogs, getNames, postLogin} from "./api/serverClient";
 import {useEffect, useState} from "react";
 
 export default function Login() {
+  const [data, setData] = useState([])
 
-  const [data, setData] = useState<>([])
   // Grab the email address on changed state
-  const [email, setEmail] = useState<>('');
-  const [password, setPassword] = useState<>('');
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
 
-  useEffect(() => {
-    getNames().then(data => {
-	console.log(data);
-      // let html: React.ReactElement;
-      // for (const d of data.data) {
-      //   console.log(d);
-      //   html = <><div>{d.id}</div><div>{d.name}</div></>
-      // }
-      //
-      // console.log(html)
-      setData(data.data);
+  // useEffect(() => {
+  //   getNames().then(data => {
+	// console.log(data);
+  //     setData(data.data);
 
-    })
-  }, [])
+  //   })
+  // }, [])
 
   useEffect(() => {
 
@@ -30,6 +23,7 @@ export default function Login() {
 
   }, [email, password])
 
+
   // For handleClick when run send the email address and password to the post request in serverClient.ts
     const handleClick = () => {
       postLogin('sign-in', {email, password}).then(data => {
@@ -37,8 +31,12 @@ export default function Login() {
       })
     }
 
-
-
+    useEffect(() => {
+      getBlogs().then(data => {
+        setData(data.data);
+      })
+    }, [])
+  
 
   return (
       <>
