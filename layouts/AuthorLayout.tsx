@@ -20,7 +20,7 @@ export default function AuthorLayout({ children, content }: Props) {
         <div className="grid grid-rows grid-flow-col gap-24">
           <div>
           <Image
-              src={'/static/images/about-pic.png'} /* how to change this about me image */
+              src={'/static/images/about-pic.png'} 
               alt="avatar"
               width={192}
               height={192}
@@ -28,14 +28,14 @@ export default function AuthorLayout({ children, content }: Props) {
             />
           </div>
           <div>
-            <p>
+            <p className="text-xl font-normal text-gray-900 dark:text-white">
             Hi! Welcome to our blog website. This website was created by a group of MLT fellows. We're all individuals that are pursuing a career in software engineering and with an interest in web development. We've spent several weeks working together to put this website together in order to get some experience with web development. We hope you love it!
             </p>
           </div>
         </div>
         </div>
         <div className="items-start space-y-2 xl:grid xl:grid-cols-3 xl:gap-x-8 xl:space-y-0">
-        <div className="prose max-w-none pt-8 pb-8 dark:prose-dark xl:col-span-2">{children}</div>
+        <div className="prose max-w-none pt-8 pb-8 dark:prose-dark xl:col-span-5">{children}</div>
         </div>
       </div>
     </>
