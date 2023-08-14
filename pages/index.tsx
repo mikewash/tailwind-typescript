@@ -37,6 +37,7 @@ export default function Home() {
   
   useEffect(() => {
     getBlogs().then(data => {
+      if (!data) return;
       console.log('data', data)
       setData(data.data);
       setData2(data.data2);
