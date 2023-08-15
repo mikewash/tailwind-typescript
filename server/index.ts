@@ -1,4 +1,4 @@
-import { getBlog, getSingleTag, getAllTags } from "c:/Users/jose_/Desktop/tailwind-typescript/server/models";
+import { getBlog, getSingleTag, getAllTags, getAllPopular } from "c:/Users/jose_/Desktop/tailwind-typescript/server/models";
 import express from 'express';
 import cors from 'cors';
 import {getConnection} from './database';
@@ -25,6 +25,12 @@ app.get('/api', (req, res) => {
     console.log('Hello World!')
     res.json({ message: 'Hello World!' });
 });
+
+app.get('/blog/popular', async (req, res) => {
+    const databaseobjects = await getAllPopular();
+    res.json({data: databaseobjects})
+});
+
 
 app.post('/sign-in', async (req, res) => {
     console.log('Body: ', req.body)

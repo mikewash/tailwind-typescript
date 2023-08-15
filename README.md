@@ -219,9 +219,7 @@ Continue following the steps, choosing the default settings.
 
 ### MacOS
 
-The MySQL community server is included in the MySQL Workbench, which is a graphical user interface, so we can get started downloading the MySQL workbench.
-
-Go to [MySQL Workbench](https://dev.mysql.com/downloads/workbench/), select the MacOS operating system, click the download button. Open the downloaded executable, and drag and drop the MySQL icon to the applcations folder. MySQL Workbench should be ready to use.
+First, download [MySQL Community Server](https://dev.mysql.com/downloads/mysql/). Then, download MySQL graphical user interface by accessing [MySQL Workbench](https://dev.mysql.com/downloads/workbench/), select the MacOS operating system, click the download button. Open the downloaded executable, and drag and drop the MySQL icon to the applcations folder. MySQL Workbench should be ready to use.
 
 ### Updating Database Locally
 

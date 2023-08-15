@@ -35,16 +35,9 @@ export const getAllTags = async () => {
     return allTags;
   }
 
-// Fetch blog posts
+export const getAllPopular = async () => {
+  const query = 'SELECT * FROM blogs WHERE created >= DATE_SUB(NOW(), INTERVAL 3 MONTH) ORDER BY RAND() LIMIT 5;'
+  const [data] = (await pool.promise().query(query));
+    return data;
+}
 
-// Fetch tags for each blog post and add the 'tags' property to the blog post object
-// export const getBlogWithTags = async () => {
-//     const blogPosts = await getBlog();
-//     const blogsWithTags = await Promise.all(
-//       blogPosts.map(async (blog) => {
-//         const tags = await getSingleTag(blog.id);
-//         return { ...blog, tags };
-//       })
-//     );
-//     return blogsWithTags;
-//   }

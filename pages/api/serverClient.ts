@@ -12,3 +12,7 @@ export const getBlogs = async (path?: string) => {
     const data = await Get(path );
     return data;
 }
+export const getPopular = async (path?: string) => {
+    const data = await Get(path );
+    return data;
+}
