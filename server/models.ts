@@ -1,7 +1,6 @@
 //MODELS ARE FOR REACHING OUT TO THE DATA BASE
 import { RowDataPacket } from 'mysql2';
-import pool from 'c:/Users/jose_/Desktop/tailwind-typescript/database';
-
+import pool from './database';
 //get 6 most recent BLOGs info
  //Establish a connection
   //get the data

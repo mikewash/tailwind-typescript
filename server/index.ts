@@ -1,9 +1,9 @@
-import { getBlog, getSingleTag, getAllTags, getAllPopular } from "c:/Users/jose_/Desktop/tailwind-typescript/server/models";
+import { getBlog, getSingleTag, getAllTags, getAllPopular } from "./models";
 import express from 'express';
 import cors from 'cors';
-import {getConnection} from './database';
-import bodyParser from "body-parser";
-import {getUsers} from "./model";
+// import {getUsers} from "./model";
+
+
 
 
 
@@ -35,7 +35,7 @@ app.get('/blog/popular', async (req, res) => {
 app.post('/sign-in', async (req, res) => {
     console.log('Body: ', req.body)
     // This is just an example change this to your own logic so you can sign into the app
-    const rows = await getUsers()
+    const rows = []
     res.json({data: rows});
 });
 

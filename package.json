@@ -12,15 +12,14 @@
     "lint": "next lint --fix --dir pages --dir components --dir lib --dir layouts --dir scripts"
   },
   "dependencies": {
+    "@floating-ui/react": "^0.25.0",
     "@headlessui/react": "^1.7.15",
     "@next/bundle-analyzer": "13.1.6",
     "@next/font": "13.1.6",
     "@tailwindcss/forms": "^0.5.3",
     "@tailwindcss/typography": "^0.5.9",
     "autoprefixer": "^10.4.13",
-    "body-parser": "^1.19.0",
     "contentlayer": "0.3.0",
-    "cors": "^2.8.5",
     "db-migrate": "^0.11.13",
     "db-migrate-mysql": "^2.2.0",
     "esbuild": "0.17.5",
@@ -53,7 +52,10 @@
     "tailwindcss": "^3.2.2",
     "ts-node": "^10.4.0",
     "unist-util-visit": "^4.1.0",
-    "ts-node-dev": "^1.1.8"
+    "cors": "^2.8.5",
+    "body-parser": "^1.19.0",
+    "ts-node-dev": "^1.1.8",
+    "dotenv": "^10.0.0"
   },
   "devDependencies": {
     "@svgr/webpack": "^6.3.1",
