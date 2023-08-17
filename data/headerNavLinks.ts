@@ -1,7 +1,10 @@
+import { FaUser } from 'react-icons/fa';
+
 const headerNavLinks = [
-  { href: '/blog', title: 'Blog' },
-  { href: '/tags', title: 'Tags' },
-  { href: '/projects', title: 'Projects' },
+  { href: '/blog/popular', title: 'Popular' },
+  { href: '/tags', title: 'News' },
+  { href: '/projects', title: 'Video' },
+  { href: '/projects', title: 'Gaming' },
   { href: '/about', title: 'About' },
   { href: '/login', title: 'Login' },
 ]
