@@ -1,4 +1,4 @@
-import { getBlog, getSingleTag, getAllTags, getAllPopular } from "./models";
+import { getBlog, getSingleTag, getAllTags, getAllPopular, getCategoryBlogs } from "./models";
 import express from 'express';
 import cors from 'cors';
 // import {getUsers} from "./model";
@@ -29,6 +29,12 @@ app.get('/api', (req, res) => {
 app.get('/blog/popular', async (req, res) => {
     const databaseobjects = await getAllPopular();
     res.json({data: databaseobjects})
+});
+
+app.get('/blog/:category', async (req, res) => {
+    const { category } = req.params; // Get the dynamic category parameter from the URL
+    const databaseObjects = await getCategoryBlogs(category); // Fetch data for the specified category
+    res.json({ data: databaseObjects });
 });
 
 

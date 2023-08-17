@@ -40,3 +40,14 @@ export const getAllPopular = async () => {
     return data;
 }
 
+export const getCategoryBlogs = async (category) => {
+  const query = `
+    SELECT b.id, b.title, b.content, b.authorid, b.created, b.summary
+    FROM blogs AS b
+    JOIN categories AS c ON b.categoryid = c.id
+    WHERE c.name = ?
+    ORDER BY b.created DESC;
+  `;
+  const [data] = await pool.promise().query(query, [category]);
+  return data;
+};

@@ -16,3 +16,7 @@ export const getPopular = async (path?: string) => {
     const data = await Get(path );
     return data;
 }
+export const getCategory = async (path?: string) => {
+    const data = await Get(path );
+    return data;
+}
