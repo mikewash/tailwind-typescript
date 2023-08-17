@@ -35,7 +35,7 @@ export const getAllTags = async () => {
   }
 
 export const getAllPopular = async () => {
-  const query = 'SELECT * FROM blogs WHERE created >= DATE_SUB(NOW(), INTERVAL 3 MONTH) ORDER BY RAND() LIMIT 5;'
+  const query = 'SELECT * FROM blogs WHERE created >= DATE_SUB(NOW(), INTERVAL 3 MONTH) ORDER BY RAND() LIMIT 10;'
   const [data] = (await pool.promise().query(query));
     return data;
 }

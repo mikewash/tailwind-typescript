@@ -4,7 +4,7 @@ import { PageSEO } from '@/components/SEO'
 import { useEffect, useState } from 'react'
 import { getPopular } from 'pages/api/serverClient'
 
-export const POSTS_PER_PAGE = 5
+export const POSTS_PER_PAGE = 10
 
 export default function BlogPage() {
 

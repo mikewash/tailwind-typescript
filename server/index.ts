@@ -31,12 +31,11 @@ app.get('/blog/popular', async (req, res) => {
     res.json({data: databaseobjects})
 });
 
-app.get('/blog/:category', async (req, res) => {
+app.get('/category/:category', async (req, res) => {
     const { category } = req.params; // Get the dynamic category parameter from the URL
     const databaseObjects = await getCategoryBlogs(category); // Fetch data for the specified category
     res.json({ data: databaseObjects });
 });
-
 
 app.post('/sign-in', async (req, res) => {
     console.log('Body: ', req.body)

@@ -7,6 +7,9 @@ import Link from '@/components/Link'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 
+interface PaginationCat{
+  categories: string | string[]
+}
 interface PaginationProps {
   totalPages: number
   currentPage: number
@@ -29,10 +32,13 @@ interface ListLayoutProps {
   pagination?: PaginationProps
 }
 
-function Pagination({ totalPages, currentPage }: PaginationProps) {
+function Pagination({ totalPages, currentPage,}: PaginationProps,
+  {categories} : PaginationCat,
+  ) {
   const router = useRouter()
+  const { category } = router.query;
+  const basePath = `/category/${category}`
   const pathSegments = router.pathname.split('/');
-  const basePath = `/${pathSegments[1]}/${pathSegments[2]}/${pathSegments[3]}`;
   const prevPage = currentPage - 1 > 0
   const nextPage = currentPage + 1 <= totalPages
 
