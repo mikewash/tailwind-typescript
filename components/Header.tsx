@@ -19,16 +19,19 @@ const Header = () => {
           
           <div className='border border-white-600 h-15'></div>
           <div>
-            <span className='text-white'> SIGN UP FOR DIGG'S MORNING NEWSLETTER</span>
+            <span className='text-white text-xs'> SIGN UP FOR DIGG'S MORNING NEWSLETTER</span>
             <br></br>
-            <span className='text-white object-bottom'> The best stories of the day, in your inbox</span>
+            <span className='text-white'> The best stories of the day, in your inbox</span>
           </div>
-          
+          <div className='relative'>
           <button className="bg-white hover:bg-gray-100 text-[#0152cc] font-semibold py-2 px-4 border border-gray-400 rounded shadow">
             Subscribe Now
           </button>
+
+          <button className='absolute -bottom-8 right-1 text-xs text-white'> HIDE </button>
+          </div>
         </div>
-        
+
         <Link href="/">
           <div className="flex items-center justify-center pt-8 pb-6 ">
             <div className="mr-3">
