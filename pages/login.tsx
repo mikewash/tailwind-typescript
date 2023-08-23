@@ -1,4 +1,4 @@
-import {getBlogs, getNames, postLogin} from "./api/serverClient";
+import {postLogin, getRequest} from "./api/serverClient";
 import {useEffect, useState} from "react";
 
 export default function Login() {
@@ -32,7 +32,7 @@ export default function Login() {
     }
 
     useEffect(() => {
-      getBlogs().then(data => {
+      getRequest().then(data => {
         setData(data.data);
       })
     }, [])

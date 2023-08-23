@@ -4,6 +4,7 @@ import Logo from '@/data/logo.svg'
 import Link from './Link'
 import MobileNav from './MobileNav'
 import ThemeSwitch from './ThemeSwitch'
+import { FaUser } from 'react-icons/fa';
 
 const Header = () => {
   return (
@@ -64,14 +65,16 @@ const Header = () => {
       </div>
       <hr></hr>
       <div className="flex items-center text-base leading-5 justify-center py-4 ml-9 ">
-        <div className="hidden sm:block">
+        <div className="hidden sm:flex space-x-2">
           {headerNavLinks.map((link) => (
             <Link
               key={link.title}
               href={link.href}
               className="p-1 font-extrabold text-gray-900 dark:text-gray-100 sm:p-4"
             >
-              {link.title}
+              <div className="flex items-center">
+                  {link.title === 'Login' ? <FaUser/> : link.title}
+              </div>
             </Link>
           ))}
         </div>

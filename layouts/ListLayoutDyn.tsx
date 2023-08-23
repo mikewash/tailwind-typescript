@@ -1,26 +1,44 @@
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 import { formatDate } from 'pliny/utils/formatDate'
-import { CoreContent } from 'pliny/utils/contentlayer'
-import type { Blog } from 'contentlayer/generated'
+//import { CoreContent } from 'pliny/utils/contentlayer'
+//import type { Blog } from 'contentlayer/generated'
 import Link from '@/components/Link'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 
+interface PaginationCat{
+  categories: string | string[]
+}
 interface PaginationProps {
   totalPages: number
   currentPage: number
 }
-interface ListLayoutProps {
-  posts: CoreContent<Blog>[]
+
+interface Blog {
+  id: number
   title: string
-  initialDisplayPosts?: CoreContent<Blog>[]
+  content: string
+  authorid: number
+  created: string
+  summary: string
+  categoryid: number
+}
+
+interface ListLayoutProps {
+  posts: Blog[]
+  title: string
+  initialDisplayPosts?: Blog[]
   pagination?: PaginationProps
 }
 
-function Pagination({ totalPages, currentPage }: PaginationProps) {
+function Pagination({ totalPages, currentPage,}: PaginationProps,
+  {categories} : PaginationCat,
+  ) {
   const router = useRouter()
-  const basePath = router.pathname.split('/')[1]
+  const { category } = router.query;
+  const basePath = `/category/${category}`
+  const pathSegments = router.pathname.split('/');
   const prevPage = currentPage - 1 > 0
   const nextPage = currentPage + 1 <= totalPages
 
@@ -66,7 +84,7 @@ export default function ListLayout({
 }: ListLayoutProps) {
   const [searchValue, setSearchValue] = useState('')
   const filteredBlogPosts = posts.filter((post) => {
-    const searchContent = post.title + post.summary + post.tags.join(' ')
+    const searchContent = post.title + post.summary 
     return searchContent.toLowerCase().includes(searchValue.toLowerCase())
   })
 
@@ -104,9 +122,9 @@ export default function ListLayout({
 
           {!filteredBlogPosts.length && 'No posts found.'}
           {displayPosts.map((post) => {
-            const { path, date, title, summary, tags } = post
+            const { id, created, title, summary} = post //remove tags
             return (
-              <li key={path} className="py-4 ">
+              <li key={id} className="py-4 ">
 
                 <article className="pb-12 relative clear-right">
                   <img className='px-8 float-right h-auto max-w-md' src="https://t3.ftcdn.net/jpg/02/48/42/64/240_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg" />
@@ -117,14 +135,14 @@ export default function ListLayout({
                   <div className="space-y-3 xl:col-span-3">
                     <div>
                       <h3 className="text-2xl font-bold leading-8 tracking-tight">
-                        <Link href={`/${path}`} className="text-gray-900 dark:text-gray-100">
+                        <Link href={`/${id}`} className="text-gray-900 dark:text-gray-100">
                           {title}
                         </Link>
                       </h3>
                       <div className="flex flex-wrap">
-                        {tags.map((tag) => (
+                        {/* {tags.map((tag) => (
                           <Tag key={tag} text={tag} />
-                        ))}
+                        ))} */}
                       </div>
                     </div>
 
@@ -136,7 +154,7 @@ export default function ListLayout({
                     <div className='flex flex-row justify-betweeen space-x-2'>
 
                       <div className="self-center text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                        <time dateTime={date}>{formatDate(date, siteMetadata.locale)}</time>
+                        <time dateTime={created}>{formatDate(created, siteMetadata.locale)}</time>
                       </div>
 
                       <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 hover:border-transparent rounded">

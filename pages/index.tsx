@@ -3,7 +3,7 @@ import { PageSEO } from '@/components/SEO'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import { formatDate } from 'pliny/utils/formatDate'
-import {getBlogs, getNames, postLogin} from "./api/serverClient";
+import {getRequest} from "./api/serverClient";
 import {useEffect, useState} from "react";
 
 const MAX_DISPLAY = 6
@@ -13,7 +13,7 @@ export default function Home() {
   const [data2, setData2] = useState([]);
   
   useEffect(() => {
-    getBlogs().then(data => {
+    getRequest().then(data => {
       if (!data) return;
       console.log('data', data)
       setData(data.data);
@@ -57,13 +57,9 @@ export default function Home() {
                           <span className="text-gray-900 dark:text-gray-100">{title}</span>
                           </h2>
                           <div className="flex flex-wrap">
-                         {tagsArray.length > 0 ? (
-                          tagsArray.map((tag, tagIndex) => (
-                          <Tag key={tagIndex} text={tag.name} />
-                          ))
-                          ): (
-                          <div className="px-4 py-2.5"></div>
-                          )}
+                            {tagsArray.map((tag, tagIndex) => (
+                              <Tag key={tagIndex} text={tag.name} />
+                            ))}
                           </div>
                         </div>
                         <div className="prose max-w-none text-gray-500 dark:text-gray-400">
