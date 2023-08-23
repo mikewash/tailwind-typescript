@@ -38,6 +38,6 @@
     ".contentlayer/generated",
     ".contentlayer/generated/**/*.json",
     ".next/types/**/*.ts"
-  ],
+, "pages/dynamicPage/components"  ],
   "exclude": ["node_modules"]
 }

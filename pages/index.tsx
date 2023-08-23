@@ -3,32 +3,10 @@ import { PageSEO } from '@/components/SEO'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import { formatDate } from 'pliny/utils/formatDate'
-import { sortedBlogPost, allCoreContent } from 'pliny/utils/contentlayer'
-import { InferGetStaticPropsType } from 'next'
-import { NewsletterForm } from 'pliny/ui/NewsletterForm'
-import { allBlogs } from 'contentlayer/generated'
-import type { Blog } from 'contentlayer/generated'
 import {getBlogs, getNames, postLogin} from "./api/serverClient";
 import {useEffect, useState} from "react";
 
 const MAX_DISPLAY = 6
-
-//import { getBlogWithTags } from 'server/models'
-
-// export const getStaticProps = async () => {
-//   const sortedPosts = sortedBlogPost(allBlogs) as Blog[]
-//   const posts = allCoreContent(sortedPosts)
-
-//   return { props: { posts } }
-// }
-
-// export async function getServerSideProps() {
-//   const posts = await getBlogWithTags(); 
-//   return { props: {posts}};
-// }
-
-// export default function Home({ posts }: InferGetStaticPropsType<typeof getServerSideProps>)
-
 
 export default function Home() {
   const [data, setData] = useState([]);
@@ -36,6 +14,7 @@ export default function Home() {
   
   useEffect(() => {
     getBlogs().then(data => {
+      if (!data) return;
       console.log('data', data)
       setData(data.data);
       setData2(data.data2);

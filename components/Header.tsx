@@ -62,10 +62,6 @@ const Header = () => {
         </div>
 
       </div>
-
-
-
-
       <hr></hr>
       <div className="flex items-center text-base leading-5 justify-center py-4 ml-9 ">
         <div className="hidden sm:block">
