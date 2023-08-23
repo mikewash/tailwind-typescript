@@ -2,7 +2,7 @@ import siteMetadata from '@/data/siteMetadata'
 import ListLayoutDyn from '@/layouts/ListLayoutDyn'
 import { PageSEO } from '@/components/SEO'
 import { useEffect, useState } from 'react'
-import { getCategory } from 'pages/api/serverClient'
+import {getRequest} from 'pages/api/serverClient'
 import { useRouter } from 'next/router'
 
 export const POSTS_PER_PAGE = 10
@@ -16,7 +16,7 @@ const { category } = router.query;
   const[data, setData] = useState([]);
 
   useEffect(() => {
-    getCategory(`category/${category}`).then(data => {
+    getRequest(`category/${category}`).then(data => {
         //console.log('Fetched data:', data);
         setData(data.data);
     })
