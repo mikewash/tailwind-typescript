@@ -1,22 +1,12 @@
 import {Get, Post} from "./serverGenerics";
 
-export const getNames = async (path?: string) => {
-    const data = await Get(path );
-    return data;
+
+// This will handle all the Get requests to the server
+// Unless you have a custom request
+export const getRequest = async (path?: string) => {
+    return await Get(path);
 }
 export const postLogin = async (path?: string, body?: any) => {
     const data = await Post(path, body);
-    return data;
-}
-export const getBlogs = async (path?: string) => {
-    const data = await Get(path );
-    return data;
-}
-export const getPopular = async (path?: string) => {
-    const data = await Get(path );
-    return data;
-}
-export const getCategory = async (path?: string) => {
-    const data = await Get(path );
     return data;
 }

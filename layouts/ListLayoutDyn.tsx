@@ -83,7 +83,6 @@ export default function ListLayout({
   pagination,
 }: ListLayoutProps) {
   const [searchValue, setSearchValue] = useState('')
-
   const filteredBlogPosts = posts.filter((post) => {
     const searchContent = post.title + post.summary 
     return searchContent.toLowerCase().includes(searchValue.toLowerCase())

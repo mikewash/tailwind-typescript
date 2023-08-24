@@ -3,7 +3,7 @@ import { PageSEO } from '@/components/SEO'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import { formatDate } from 'pliny/utils/formatDate'
-import {getBlogs, getNames, postLogin} from "./api/serverClient";
+import {getRequest} from "./api/serverClient";
 import {useEffect, useState} from "react";
 
 const MAX_DISPLAY = 6
@@ -13,7 +13,7 @@ export default function Home() {
   const [data2, setData2] = useState([]);
   
   useEffect(() => {
-    getBlogs().then(data => {
+    getRequest().then(data => {
       if (!data) return;
       console.log('data', data)
       setData(data.data);

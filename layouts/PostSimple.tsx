@@ -50,7 +50,6 @@ export default function PostLayout({ post, next, prev, children, tags }: LayoutP
 
   return (
     <SectionContainer>
-      {/* <BlogSEO url={`${siteMetadata.siteUrl}/${path}`} {...content} /> */}
       <ScrollTopAndComment />
       <article>
         <div>

@@ -9,7 +9,7 @@ import data from '..'
 // import type { Blog } from 'contentlayer/generated'
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react'
-import { getCategory } from 'pages/api/serverClient'
+import { getRequest } from 'pages/api/serverClient'
 
 
 export default function PostPage() {
@@ -22,7 +22,7 @@ const { page } = router.query;
   const[data, setData] = useState([]);
 
   useEffect(() => {
-    getCategory(`category/${category}/page/${page}`).then(data => {
+    getRequest(`category/${category}/page/${page}`).then(data => {
         //console.log('Fetched data:', data);
         setData(data.data);
     })

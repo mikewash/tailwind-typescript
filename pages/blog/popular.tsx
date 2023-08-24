@@ -2,7 +2,7 @@ import siteMetadata from '@/data/siteMetadata'
 import ListLayoutDyn from '@/layouts/ListLayoutDyn'
 import { PageSEO } from '@/components/SEO'
 import { useEffect, useState } from 'react'
-import { getPopular } from 'pages/api/serverClient'
+import {getRequest} from 'pages/api/serverClient'
 
 export const POSTS_PER_PAGE = 10
 
@@ -11,7 +11,7 @@ export default function BlogPage() {
   const[data, setData] = useState([]);
 
   useEffect(() => {
-    getPopular('blog/popular').then(data => {
+      getRequest('blog/popular').then(data => {
         console.log('Fetched data:', data);
         setData(data.data);
     })

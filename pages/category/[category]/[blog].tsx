@@ -1,7 +1,7 @@
 import siteMetadata from '@/data/siteMetadata'
 import { PageSEO } from '@/components/SEO'
 import { useEffect, useState } from 'react'
-import { getSingleBlog } from 'pages/api/serverClient'
+import { getRequest } from 'pages/api/serverClient'
 import { useRouter } from 'next/router'
 import PostLayout from '@/layouts/PostLayout'
 import PostSimple from '@/layouts/PostSimple'
@@ -19,7 +19,7 @@ const { blog } = router.query;
   const [data2, setData2] = useState([]);
 
   useEffect(() => {
-    getSingleBlog(`category/${category}/${blog}`).then(data => {
+    getRequest(`category/${category}/${blog}`).then(data => {
         console.log('Fetched data:', data);
         setData(data.data);
         setData2(data.data2);
@@ -30,6 +30,7 @@ const { blog } = router.query;
     <PageSEO title={`Blog - ${siteMetadata.author}`} description={siteMetadata.description} />
     {data.map((blog) => (
       <PostSimple key={blog.id} post={blog} tags={data2}>
+    
       </PostSimple>
     ))}
   </>

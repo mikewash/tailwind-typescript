@@ -68,5 +68,6 @@ export const getTagsBlog = async (blog: string) => {
   JOIN blogs ON blogs.id = blogTagsBridge.blogid  WHERE blogs.title = ?
   `;
   const [data] = await pool.promise().query(query, [blog]);
+
   return data;
 }
