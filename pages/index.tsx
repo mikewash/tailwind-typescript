@@ -38,6 +38,7 @@ export default function Home() {
           {data.slice(0, MAX_DISPLAY).map((post, index) => {
             const { created, title, summary} = post;
             const tagsArray = data2[index]|| [];
+            const encodedTitle = title.replace(/ /g, '_');
             return (
                 <article>
                   <div key={index}>
@@ -67,9 +68,9 @@ export default function Home() {
                         </div>
                       </div>
                       <div className="text-base font-medium leading-6">
-                      <span className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
+                      <Link href={`/${encodedTitle}`} className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
                        Read more &rarr;
-                      </span>
+                      </Link>
                       </div>
                     </div>
                   </div>

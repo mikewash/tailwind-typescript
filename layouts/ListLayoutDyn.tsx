@@ -83,10 +83,15 @@ export default function ListLayout({
   pagination,
 }: ListLayoutProps) {
   const [searchValue, setSearchValue] = useState('')
+
   const filteredBlogPosts = posts.filter((post) => {
     const searchContent = post.title + post.summary 
     return searchContent.toLowerCase().includes(searchValue.toLowerCase())
   })
+
+  const router = useRouter()
+  const { category } = router.query;
+  const basePath = `/category/${category}`
 
   // If initialDisplayPosts exist, display it if no searchValue is specified
   const displayPosts =
@@ -123,6 +128,7 @@ export default function ListLayout({
           {!filteredBlogPosts.length && 'No posts found.'}
           {displayPosts.map((post) => {
             const { id, created, title, summary} = post //remove tags
+            const encodedTitle = title.replace(/ /g, '_');
             return (
               <li key={id} className="py-4 ">
 
@@ -135,7 +141,7 @@ export default function ListLayout({
                   <div className="space-y-3 xl:col-span-3">
                     <div>
                       <h3 className="text-2xl font-bold leading-8 tracking-tight">
-                        <Link href={`/${id}`} className="text-gray-900 dark:text-gray-100">
+                        <Link href={`/${basePath}/${encodedTitle}`} className="text-gray-900 dark:text-gray-100">
                           {title}
                         </Link>
                       </h3>

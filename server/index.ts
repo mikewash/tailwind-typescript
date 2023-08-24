@@ -1,4 +1,4 @@
-import { getBlog, getSingleTag, getAllTags, getAllPopular, getCategoryBlogs } from "./models";
+import { getBlog, getSingleTag, getAllTags, getAllPopular, getCategoryBlogs, getBlogPost, getTagsBlog } from "./models";
 import express from 'express';
 import cors from 'cors';
 // import {getUsers} from "./model";
@@ -36,6 +36,21 @@ app.get('/category/:category', async (req, res) => {
     const databaseObjects = await getCategoryBlogs(category); // Fetch data for the specified category
     res.json({ data: databaseObjects });
 });
+
+app.get('/category/:category/page/:page', async (req, res) => {
+    const { category } = req.params; // Get the dynamic category parameter from the URL
+    const databaseObjects = await getCategoryBlogs(category); // Fetch data for the specified category
+    res.json({ data: databaseObjects });
+});
+
+app.get('/category/:category/:blog', async (req,res) => {
+    const { blog } = req.params; 
+    const title = blog.replace(/_/g, ' ');
+    const databaseObjects = await getBlogPost(title); // Fetch data for the specified blog
+    const databaseObjects2 = await getTagsBlog(title); // Fetch data for the specified blog
+    res.json({ data: databaseObjects, data2: databaseObjects2 });
+});
+
 
 app.post('/sign-in', async (req, res) => {
     console.log('Body: ', req.body)
