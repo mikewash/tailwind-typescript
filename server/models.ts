@@ -7,7 +7,7 @@ import pool from './database';
 
 
 export const getBlog = async (): Promise<RowDataPacket[]>=> {
-    const query = 'SELECT * FROM blogs ORDER BY created DESC LIMIT 7'; //BETWEEN 2 AND 7
+    const query = 'SELECT * FROM blogs ORDER BY created DESC';
     const [data] = (await pool.promise().query(query));
     return data as RowDataPacket[];
   }
@@ -42,7 +42,7 @@ export const getAllPopular = async () => {
 
 export const getCategoryBlogs = async (category) => {
   const query = `
-    SELECT b.id, b.title, b.content, b.authorid, b.created, b.summary
+    SELECT b.id, b.title, b.content, b.authorid, b.created, b.summary, b.thumbnail
     FROM blogs AS b
     JOIN categories AS c ON b.categoryid = c.id
     WHERE c.name = ?
