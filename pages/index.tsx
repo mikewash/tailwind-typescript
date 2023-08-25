@@ -43,12 +43,11 @@ export default function Home() {
                   <div key={index}>
                   <div className="flex mb-4">
                     <div className="w-3/5">
-                      <div className=''>
+                      <div className='pr-9'>
                       <img className='w-full h-full object-cover' src="https://cdn.digg.com/submitted-links/877x439/1692290517-EuR6TwOjlb.jpg" />
                       </div>
                     </div>
                     <div className="w-2/5">
-                    <div className="flex justify-end"> 
                       <dl>
                         <dt className="sr-only">Published on</dt>
                         <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
@@ -58,7 +57,7 @@ export default function Home() {
                       <div className="space-y-5 xl:col-span-3">
                         <div className="space-y-6">
                           <div>
-                            <h2 className="text-2xl font-bold leading-8 tracking-tight">
+                            <h2 className="text-3xl font-bold leading-8 tracking-tight">
                             <span className="text-gray-900 dark:text-gray-100">{title}</span>
                             </h2>
                             <div className="flex flex-wrap">
@@ -81,7 +80,6 @@ export default function Home() {
                         </span>
                         </div>
                       </div>
-                    </div> 
                     </div>
                   </div>
                   </div>
