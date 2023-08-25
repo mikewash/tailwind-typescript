@@ -41,8 +41,8 @@ export default function Home() {
             return (
                 <article>
                   <div key={index}>
-                    <div className=''>
-                    <img className='h-auto max-w-md' src="https://t3.ftcdn.net/jpg/02/48/42/64/240_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg" />
+                    <div className='w-100 h-100'>
+                    <img className='w-full h-full object-cover' src="/static/images/logo.png" />
                     </div>
                     <dl>
                       <dt className="sr-only">Published on</dt>
