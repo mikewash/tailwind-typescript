@@ -1,6 +1,7 @@
 import Link from '@/components/Link'
 import { PageSEO } from '@/components/SEO'
 import Tag from '@/components/Tag'
+import { useRouter } from 'next/router'
 import siteMetadata from '@/data/siteMetadata'
 import { formatDate } from 'pliny/utils/formatDate'
 import {getRequest} from "./api/serverClient";
@@ -20,6 +21,8 @@ export default function Home() {
       setData2(data.data2);
     })
   }, [])
+
+  const basePath = `/category/newest`
 
   return (
     <>
@@ -68,7 +71,7 @@ export default function Home() {
                         </div>
                       </div>
                       <div className="text-base font-medium leading-6">
-                      <Link href={`/${encodedTitle}`} className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
+                      <Link href={`/${basePath}/${encodedTitle}`} className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
                        Read more &rarr;
                       </Link>
                       </div>

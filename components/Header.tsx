@@ -4,7 +4,8 @@ import Logo from '@/data/logo.svg'
 import Link from './Link'
 import MobileNav from './MobileNav'
 import ThemeSwitch from './ThemeSwitch'
-import { FaUser } from 'react-icons/fa';
+import { FaUser, FaArrowUp } from 'react-icons/fa';
+
 
 const Header = () => {
   return (
@@ -74,6 +75,11 @@ const Header = () => {
             >
               <div className="flex items-center">
                   {link.title === 'Login' ? <FaUser/> : link.title}
+                  {link.title === 'Popular' && (
+                  <>
+                  <span className="diagonal-arrow ml-1 inline-block transform rotate-45"><FaArrowUp/></span>
+                </>
+                  )}
               </div>
             </Link>
           ))}
