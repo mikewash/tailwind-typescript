@@ -42,7 +42,7 @@ export const getAllPopular = async () => {
 
 export const getCategoryBlogs = async (category) => {
   const query = `
-    SELECT b.id, b.title, b.content, b.authorid, b.created, b.summary
+    SELECT b.id, b.title, b.content, b.authorid, b.created, b.summary, b.thumbnail
     FROM blogs AS b
     JOIN categories AS c ON b.categoryid = c.id
     WHERE c.name = ?

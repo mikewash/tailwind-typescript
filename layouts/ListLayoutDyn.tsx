@@ -122,12 +122,13 @@ export default function ListLayout({
 
           {!filteredBlogPosts.length && 'No posts found.'}
           {displayPosts.map((post) => {
-            const { id, created, title, summary} = post //remove tags
+            const { id, created, title, summary, thumbnail} = post //remove tags
+            const currentImage = thumbnail ? thumbnail : 'https://t3.ftcdn.net/jpg/02/48/42/64/240_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg';
             return (
               <li key={id} className="py-4 ">
 
                 <article className="pb-12 relative clear-right">
-                  <img className='px-8 float-right h-auto max-w-md' src="https://t3.ftcdn.net/jpg/02/48/42/64/240_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg" />
+                  <img className='px-8 float-right max-h-48 max-w-md' src={currentImage} />
 
                   <dl>
                     <dt className="sr-only">Published on</dt>
@@ -147,7 +148,7 @@ export default function ListLayout({
                     </div>
 
                     <div className="prose max-w-none text-gray-500 dark:text-gray-400">
-                      {summary}
+                      {summary.length > 75 ? summary.substring(0, 75) + '...' : summary}
                     </div>
 
 
