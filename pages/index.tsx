@@ -1,6 +1,7 @@
 import Link from '@/components/Link'
 import { PageSEO } from '@/components/SEO'
 import Tag from '@/components/Tag'
+import { useRouter } from 'next/router'
 import siteMetadata from '@/data/siteMetadata'
 import { formatDate } from 'pliny/utils/formatDate'
 import {getRequest} from "./api/serverClient";
@@ -21,6 +22,8 @@ export default function Home() {
     })
   }, [])
 
+  const basePath = `/category/newest`
+
   return (
     <>
       <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
@@ -38,6 +41,7 @@ export default function Home() {
           {data.slice(0, MAX_DISPLAY).map((post, index) => {
             const { created, title, summary, thumbnail} = post;
             const tagsArray = data2[index]|| [];
+            const encodedTitle = title.replace(/ /g, '_');
             const currentImage = thumbnail ? thumbnail : 'https://t3.ftcdn.net/jpg/02/48/42/64/240_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg';
             return (
                 <article>
@@ -68,9 +72,9 @@ export default function Home() {
                         </div>
                       </div>
                       <div className="text-base font-medium leading-6">
-                      <span className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
+                      <Link href={`/${basePath}/${encodedTitle}`} className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
                        Read more &rarr;
-                      </span>
+                      </Link>
                       </div>
                     </div>
                   </div>

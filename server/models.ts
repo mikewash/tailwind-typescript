@@ -51,3 +51,23 @@ export const getCategoryBlogs = async (category) => {
   const [data] = await pool.promise().query(query, [category]);
   return data;
 };
+
+export const getBlogPost = async (blog: string) => {
+  const query = `
+    SELECT b.id, b.title, b.content, b.authorid, b.created
+    FROM blogs AS b
+    WHERE b.title = ?
+  `;
+  const [data]= await pool.promise().query(query, [blog]);
+  return data;
+};
+
+export const getTagsBlog = async (blog: string) => {
+  const query = `
+  SELECT tags.name FROM tags JOIN blogTagsBridge ON tags.id = blogTagsBridge.tagid 
+  JOIN blogs ON blogs.id = blogTagsBridge.blogid  WHERE blogs.title = ?
+  `;
+  const [data] = await pool.promise().query(query, [blog]);
+
+  return data;
+}

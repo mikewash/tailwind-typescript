@@ -1,5 +1,5 @@
 const headerNavLinks = [
-  { href: '/blog/popular', title: 'Popular' },
+  { href: '/category/popular', title: 'Popular' },
   { href: '/category/news', title: 'News' },
   { href: '/category/video', title: 'Video' },
   { href: '/category/gaming', title: 'Gaming' },

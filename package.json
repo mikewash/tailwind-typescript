@@ -14,6 +14,7 @@
     "postinstall": "node postinstall.js"
   },
   "dependencies": {
+    "@esbuild/win32-x64": "^0.19.2",
     "@floating-ui/react": "^0.25.0",
     "@headlessui/react": "^1.7.15",
     "@next/bundle-analyzer": "13.1.6",
