@@ -7,7 +7,7 @@ import { formatDate } from 'pliny/utils/formatDate'
 import {getRequest} from "./api/serverClient";
 import {useEffect, useState} from "react";
 
-const MAX_DISPLAY = 6
+const MAX_DISPLAY = 30
 
 export default function Home() {
   const [data, setData] = useState([]);
@@ -39,14 +39,15 @@ export default function Home() {
         <ul className="grid grid-cols-3 gap-4">
           {!data.length && 'No posts found.'}
           {data.slice(0, MAX_DISPLAY).map((post, index) => {
-            const { created, title, summary} = post;
+            const { created, title, summary, thumbnail} = post;
             const tagsArray = data2[index]|| [];
             const encodedTitle = title.replace(/ /g, '_');
+            const currentImage = thumbnail ? thumbnail : 'https://t3.ftcdn.net/jpg/02/48/42/64/240_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg';
             return (
                 <article>
                   <div key={index}>
                     <div className=''>
-                    <img className='h-auto max-w-md' src="https://t3.ftcdn.net/jpg/02/48/42/64/240_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg" />
+                    <img className='h-auto' src={currentImage} />
                     </div>
                     <dl>
                       <dt className="sr-only">Published on</dt>
