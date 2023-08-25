@@ -6,7 +6,7 @@ import { formatDate } from 'pliny/utils/formatDate'
 import {getRequest} from "./api/serverClient";
 import {useEffect, useState} from "react";
 
-const MAX_DISPLAY = 6
+const MAX_DISPLAY = 30
 
 export default function Home() {
   const [data, setData] = useState([]);
