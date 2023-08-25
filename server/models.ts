@@ -7,7 +7,7 @@ import pool from './database';
 
 
 export const getBlog = async (): Promise<RowDataPacket[]>=> {
-    const query = 'SELECT * FROM blogs ORDER BY created DESC LIMIT 6';
+    const query = 'SELECT * FROM blogs ORDER BY created DESC';
     const [data] = (await pool.promise().query(query));
     return data as RowDataPacket[];
   }
