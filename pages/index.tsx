@@ -44,10 +44,11 @@ export default function Home() {
                   <div className="flex mb-4">
                     <div className="w-3/5">
                       <div className=''>
-                      <img src="https://t3.ftcdn.net/jpg/02/48/42/64/240_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg" />
+                      <img className='w-full h-full object-cover' src="https://cdn.digg.com/submitted-links/877x439/1692290517-EuR6TwOjlb.jpg" />
                       </div>
                     </div>
                     <div className="w-2/5">
+                    <div className="flex justify-end"> 
                       <dl>
                         <dt className="sr-only">Published on</dt>
                         <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
@@ -80,6 +81,7 @@ export default function Home() {
                         </span>
                         </div>
                       </div>
+                    </div> 
                     </div>
                   </div>
                   </div>
@@ -95,8 +97,8 @@ export default function Home() {
             return (
                 <article>
                   <div key={index}>
-                    <div className='w-100 h-100'>
-                    <img className='w-full h-full object-cover' src="https://t3.ftcdn.net/jpg/02/48/42/64/240_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg" />
+                    <div className=''>
+                    <img className='h-auto max-w-md' src="https://t3.ftcdn.net/jpg/02/48/42/64/240_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg" />
                     </div>
                     <dl>
                       <dt className="sr-only">Published on</dt>
