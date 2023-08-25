@@ -6,7 +6,7 @@ import { formatDate } from 'pliny/utils/formatDate'
 import {getBlogs, getNames, postLogin} from "./api/serverClient";
 import {useEffect, useState} from "react";
 
-const MAX_DISPLAY = 6
+const MAX_DISPLAY = 7
 
 export default function Home() {
   const [data, setData] = useState([]);
@@ -33,16 +33,70 @@ export default function Home() {
             {siteMetadata.description}
           </p> */}
         </div>
-        <ul className="grid grid-cols-3 gap-4">
+        <ul className="flex flex-wrap">
           {!data.length && 'No posts found.'}
-          {data.slice(0, MAX_DISPLAY).map((post, index) => {
+          {data.slice(0, 1).map((post, index) => {
             const { created, title, summary} = post;
             const tagsArray = data2[index]|| [];
             return (
                 <article>
                   <div key={index}>
-                    <div className=''>
-                    <img className='h-auto max-w-md' src="https://t3.ftcdn.net/jpg/02/48/42/64/240_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg" />
+                  <div className="flex mb-4">
+                    <div className="w-3/5">
+                      <div className=''>
+                      <img src="https://t3.ftcdn.net/jpg/02/48/42/64/240_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg" />
+                      </div>
+                    </div>
+                    <div className="w-2/5">
+                      <dl>
+                        <dt className="sr-only">Published on</dt>
+                        <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+                          <time dateTime={created}>{formatDate(created, siteMetadata.locale)}</time>
+                        </dd>
+                      </dl>
+                      <div className="space-y-5 xl:col-span-3">
+                        <div className="space-y-6">
+                          <div>
+                            <h2 className="text-2xl font-bold leading-8 tracking-tight">
+                            <span className="text-gray-900 dark:text-gray-100">{title}</span>
+                            </h2>
+                            <div className="flex flex-wrap">
+                          {tagsArray.length > 0 ? (
+                            tagsArray.map((tag, tagIndex) => (
+                            <Tag key={tagIndex} text={tag.name} />
+                            ))
+                            ): (
+                            <div className="px-4 py-2.5"></div>
+                            )}
+                            </div>
+                          </div>
+                          <div className="prose max-w-none text-gray-500 dark:text-gray-400">
+                            {summary}
+                          </div>
+                        </div>
+                        <div className="text-base font-medium leading-6">
+                        <span className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
+                        Read more &rarr;
+                        </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                </article>
+            )
+          })}
+        </ul>
+        <ul className="grid grid-cols-3 gap-4">
+          {!data.length && 'No posts found.'}
+          {data.slice(1, MAX_DISPLAY).map((post, index) => {
+            const { created, title, summary} = post;
+            const tagsArray = data2[index]|| [];
+            return (
+                <article>
+                  <div key={index}>
+                    <div className='w-100 h-100'>
+                    <img className='w-full h-full object-cover' src="https://t3.ftcdn.net/jpg/02/48/42/64/240_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg" />
                     </div>
                     <dl>
                       <dt className="sr-only">Published on</dt>
