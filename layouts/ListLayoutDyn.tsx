@@ -17,6 +17,7 @@ interface PaginationProps {
 
 interface Blog {
   id: number
+  thumbnail: any 
   title: string
   content: string
   authorid: number

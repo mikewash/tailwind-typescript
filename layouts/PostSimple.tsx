@@ -14,6 +14,7 @@ import ScrollTopAndComment from '@/components/ScrollTopAndComment'
 
 interface Blog {
   id: number
+  thumbnail: any
   title: string
   content: string
   authorid: number
@@ -43,10 +44,10 @@ interface LayoutProps {
   );
 }
 
-export default function PostLayout({ post, next, prev, children, tags }: LayoutProps) {
+export default function PostLayout({ post, next, prev, children, tags, }: LayoutProps) {
   const [loadComments, setLoadComments] = useState(false)
 
-  const { id, title, content, authorid, created } = post
+  const { id, title, content, authorid, created, thumbnail } = post
 
   return (
     <SectionContainer>
@@ -54,6 +55,7 @@ export default function PostLayout({ post, next, prev, children, tags }: LayoutP
       <article>
         <div>
           <header>
+            
             <div className="space-y-1 border-b border-gray-200 pb-10 text-center dark:border-gray-700">
               <dl>
                 <div>
@@ -63,10 +65,17 @@ export default function PostLayout({ post, next, prev, children, tags }: LayoutP
                   </dd>
                 </div>
               </dl>
+              <div className="flex items-center justify-center space-x-4">
               <div>
                 <PageTitle>{title}</PageTitle>
-              </div>
-              <div className="flex justify-center">
+                </div>
+                {thumbnail && (
+                <div className="max-w-[200px]">
+                  <img src={thumbnail} alt={title} className="w-full h-auto object-cover rounded" />
+                  </div>
+                  )}
+                  </div>
+                  <div className="flex justify-center">
                 <div className="flex flex-wrap">
                   {tags.map((tag) => (
                   <div key={tag.name} className="mr-2 mb-2">

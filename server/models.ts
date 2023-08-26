@@ -54,7 +54,7 @@ export const getCategoryBlogs = async (category) => {
 
 export const getBlogPost = async (blog: string) => {
   const query = `
-    SELECT b.id, b.title, b.content, b.authorid, b.created
+    SELECT b.id, b.title, b.content, b.authorid, b.created, b.thumbnail
     FROM blogs AS b
     WHERE b.title = ?
   `;
