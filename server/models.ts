@@ -7,7 +7,7 @@ import pool from './database';
 
 
 export const getBlog = async (): Promise<RowDataPacket[]>=> {
-    const query = 'SELECT * FROM blogs ORDER BY created DESC LIMIT 6';
+    const query = 'SELECT * FROM blogs ORDER BY created DESC';
     const [data] = (await pool.promise().query(query));
     return data as RowDataPacket[];
   }
@@ -34,16 +34,40 @@ export const getAllTags = async () => {
     return allTags;
   }
 
-// Fetch blog posts
+export const getAllPopular = async () => {
+  const query = 'SELECT * FROM blogs WHERE created >= DATE_SUB(NOW(), INTERVAL 3 MONTH) ORDER BY RAND() LIMIT 10;'
+  const [data] = (await pool.promise().query(query));
+    return data;
+}
 
-// Fetch tags for each blog post and add the 'tags' property to the blog post object
-// export const getBlogWithTags = async () => {
-//     const blogPosts = await getBlog();
-//     const blogsWithTags = await Promise.all(
-//       blogPosts.map(async (blog) => {
-//         const tags = await getSingleTag(blog.id);
-//         return { ...blog, tags };
-//       })
-//     );
-//     return blogsWithTags;
-//   }
+export const getCategoryBlogs = async (category) => {
+  const query = `
+    SELECT b.id, b.title, b.content, b.authorid, b.created, b.summary, b.thumbnail
+    FROM blogs AS b
+    JOIN categories AS c ON b.categoryid = c.id
+    WHERE c.name = ?
+    ORDER BY b.created DESC;
+  `;
+  const [data] = await pool.promise().query(query, [category]);
+  return data;
+};
+
+export const getBlogPost = async (blog: string) => {
+  const query = `
+    SELECT b.id, b.title, b.content, b.authorid, b.created
+    FROM blogs AS b
+    WHERE b.title = ?
+  `;
+  const [data]= await pool.promise().query(query, [blog]);
+  return data;
+};
+
+export const getTagsBlog = async (blog: string) => {
+  const query = `
+  SELECT tags.name FROM tags JOIN blogTagsBridge ON tags.id = blogTagsBridge.tagid 
+  JOIN blogs ON blogs.id = blogTagsBridge.blogid  WHERE blogs.title = ?
+  `;
+  const [data] = await pool.promise().query(query, [blog]);
+
+  return data;
+}

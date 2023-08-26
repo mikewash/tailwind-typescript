@@ -10,9 +10,11 @@
     "build": "cross-env INIT_CWD=$PWD next build && cross-env NODE_OPTIONS='--experimental-json-modules' node -r esbuild-register ./scripts/postbuild.mjs",
     "serve": "next start",
     "analyze": "cross-env ANALYZE=true next build",
-    "lint": "next lint --fix --dir pages --dir components --dir lib --dir layouts --dir scripts"
+    "lint": "next lint --fix --dir pages --dir components --dir lib --dir layouts --dir scripts",
+    "postinstall": "node postinstall.js"
   },
   "dependencies": {
+    "@esbuild/win32-x64": "^0.19.2",
     "@floating-ui/react": "^0.25.0",
     "@headlessui/react": "^1.7.15",
     "@next/bundle-analyzer": "13.1.6",
@@ -82,6 +84,9 @@
     "prettier-plugin-tailwindcss": "^0.2.2",
     "tsx": "^3.12.7",
     "typescript": "^4.8.3"
+  },
+  "optionalDependencies": {
+    "@esbuild/win32-x64": "^0.19.2"
   },
   "lint-staged": {
     "*.+(js|jsx|ts|tsx)": [
