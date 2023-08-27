@@ -1,4 +1,5 @@
 import { useState, ReactNode } from 'react' 
+import { useRouter } from 'next/router'
 import { Comments } from 'pliny/comments'
 import { formatDate } from 'pliny/utils/formatDate'
 import React from 'react';
@@ -49,10 +50,36 @@ export default function PostLayout({ post, next, prev, children, tags, }: Layout
 
   const { id, title, content, authorid, created, thumbnail } = post
 
+  const router = useRouter()
+  const { category } = router.query;
+  const upperCategory = category === "undefined" ?
+    "Welcome": category.charAt(0).toUpperCase() + category.slice(1);
+
   return (
     <SectionContainer>
       <ScrollTopAndComment />
-      <article>
+
+      <article className="flex">
+        <div className="w-1/4 p-4 ">
+          <div className="w-full flex-shrink-0 lg:w-56">
+            <div className="flexbar-sticky-offset block lg:sticky lg:top-36">
+              <div className="relative overflow-hidden rounded rounded-l-none border-l-0 border-gray p-0 md:border md:p-4">
+              <p className="mb-2 text-xs text-black-400 bg-gray-100 p-2 rounded">
+                  41425 members
+                </p>
+              <h3 className="mb-2 text-lg font-semibold text-gray-800"> {upperCategory} </h3> 
+                <p className="mb-4 font-sans text-[14px] leading-5 text-gray-600">
+                  What's the most important news going on right now? Subscribe to get all your breaking
+                  news from one place.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
         <div>
           <header>
             
@@ -86,6 +113,7 @@ export default function PostLayout({ post, next, prev, children, tags, }: Layout
                   </div>
                 </div>
               </header>
+
           <div className="grid-rows-[auto_1fr] divide-y divide-gray-200 pb-8 dark:divide-gray-700 xl:divide-y-0">
             <div className="divide-y divide-gray-200 dark:divide-gray-700 xl:col-span-3 xl:row-span-2 xl:pb-0">
               <div className="prose max-w-none pt-10 pb-8 dark:prose-dark">{content}</div>
