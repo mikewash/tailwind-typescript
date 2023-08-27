@@ -188,17 +188,6 @@ export default function Login() {
                     > Register</a>
                   </p>
                 </div>
-
-                <div>
-                  {data.map((item, i) => {
-                    return (
-                        <div>
-                          <span>{item.id}</span><span> </span><span> {item.name}</span>
-                        </div>
-                    );
-                  })}
-
-                </div>
               </div>
             </div>
           </div>
