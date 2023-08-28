@@ -29,3 +29,6 @@ UPDATE blogs SET thumbnail=NULL WHERE id=27;
 UPDATE blogs SET thumbnail=NULL WHERE id=28;
 UPDATE blogs SET thumbnail=NULL WHERE id=29;
 UPDATE blogs SET thumbnail=NULL WHERE id=30;
+
+ALTER TABLE blogs
+DROP COLUMN thumbnail;

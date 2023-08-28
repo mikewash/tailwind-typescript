@@ -1,4 +1,7 @@
 /* Replace with your SQL commands */
+ALTER TABLE blogs
+ADD thumbnail VARCHAR(255); -- You can adjust the data type and length as needed
+
 UPDATE blogs SET thumbnail='https://picsum.photos/seed/1/600/400' WHERE id=1;
 UPDATE blogs SET thumbnail='https://picsum.photos/seed/2/600/400' WHERE id=2;
 UPDATE blogs SET thumbnail='https://picsum.photos/seed/3/600/400' WHERE id=3;

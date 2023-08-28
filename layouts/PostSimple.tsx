@@ -1,4 +1,5 @@
 import { useState, ReactNode } from 'react' 
+import { useRouter } from 'next/router'
 import { Comments } from 'pliny/comments'
 import { formatDate } from 'pliny/utils/formatDate'
 import React from 'react';
@@ -14,6 +15,7 @@ import ScrollTopAndComment from '@/components/ScrollTopAndComment'
 
 interface Blog {
   id: number
+  thumbnail: any
   title: string
   content: string
   authorid: number
@@ -43,17 +45,44 @@ interface LayoutProps {
   );
 }
 
-export default function PostLayout({ post, next, prev, children, tags }: LayoutProps) {
+export default function PostLayout({ post, next, prev, children, tags, }: LayoutProps) {
   const [loadComments, setLoadComments] = useState(false)
 
-  const { id, title, content, authorid, created } = post
+  const { id, title, content, authorid, created, thumbnail } = post
+
+  const router = useRouter()
+  const { category } = router.query;
+  const upperCategory = category === "undefined" ?
+    "Welcome": category.charAt(0).toUpperCase() + category.slice(1);
 
   return (
     <SectionContainer>
       <ScrollTopAndComment />
-      <article>
+
+      <article className="flex">
+        <div className="w-1/4 p-4 ">
+          <div className="w-full flex-shrink-0 lg:w-56">
+            <div className="flexbar-sticky-offset block lg:sticky lg:top-36">
+              <div className="relative overflow-hidden rounded rounded-l-none border-l-0 border-gray p-0 md:border md:p-4">
+              <p className="mb-2 text-xs text-black-400 bg-gray-100 p-2 rounded">
+                  41425 members
+                </p>
+              <h3 className="mb-2 text-lg font-semibold text-gray-800"> {upperCategory} </h3> 
+                <p className="mb-4 font-sans text-[14px] leading-5 text-gray-600">
+                  What's the most important news going on right now? Subscribe to get all your breaking
+                  news from one place.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
         <div>
           <header>
+            
             <div className="space-y-1 border-b border-gray-200 pb-10 text-center dark:border-gray-700">
               <dl>
                 <div>
@@ -63,10 +92,17 @@ export default function PostLayout({ post, next, prev, children, tags }: LayoutP
                   </dd>
                 </div>
               </dl>
+              <div className="flex items-center justify-center space-x-4">
               <div>
                 <PageTitle>{title}</PageTitle>
-              </div>
-              <div className="flex justify-center">
+                </div>
+                {thumbnail && (
+                <div className="max-w-[200px]">
+                  <img src={thumbnail} alt={title} className="w-full h-auto object-cover rounded" />
+                  </div>
+                  )}
+                  </div>
+                  <div className="flex justify-center">
                 <div className="flex flex-wrap">
                   {tags.map((tag) => (
                   <div key={tag.name} className="mr-2 mb-2">
@@ -77,6 +113,7 @@ export default function PostLayout({ post, next, prev, children, tags }: LayoutP
                   </div>
                 </div>
               </header>
+
           <div className="grid-rows-[auto_1fr] divide-y divide-gray-200 pb-8 dark:divide-gray-700 xl:divide-y-0">
             <div className="divide-y divide-gray-200 dark:divide-gray-700 xl:col-span-3 xl:row-span-2 xl:pb-0">
               <div className="prose max-w-none pt-10 pb-8 dark:prose-dark">{content}</div>

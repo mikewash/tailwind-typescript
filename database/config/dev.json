@@ -1,8 +1,8 @@
 {
     "dev":{
-       "host": "161.35.177.244",
-       "user": "test",
-       "password": "5$1b1b2Oc",
+       "host": "localhost",
+       "user": "root",
+       "password": "01123581321!x",
        "database": "blog_database",
        "driver": "mysql",
        "multipleStatements": true
