@@ -28,7 +28,7 @@ export default function AuthorLayout({ children, content }: Props) {
             />
           </div>
           <div>
-            <p className="text-xl font-normal text-gray-900 dark:text-white">
+            <p className="text-2xl font-normal text-gray-900 dark:text-white">
             Hi! Welcome to our blog website. This website was created by a group of MLT fellows. We're all individuals that are pursuing a career in software engineering and with an interest in web development. We've spent several weeks working together to put this website together in order to get some experience with web development. We hope you love it!
             </p>
           </div>
